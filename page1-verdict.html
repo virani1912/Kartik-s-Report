@@ -1,0 +1,1079 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Executive Verdict | Upwind Security Due Diligence</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0a0f1a;
+            --bg-secondary: #111827;
+            --bg-card: #1a2234;
+            --bg-elevated: #212b42;
+            --text-primary: #f1f5f9;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+            --border-subtle: rgba(148, 163, 184, 0.12);
+            --border-medium: rgba(148, 163, 184, 0.2);
+            --accent-blue: #3b82f6;
+            --accent-blue-light: #60a5fa;
+            --accent-blue-dim: rgba(59, 130, 246, 0.15);
+            --accent-emerald: #10b981;
+            --accent-emerald-dim: rgba(16, 185, 129, 0.15);
+            --accent-amber: #f59e0b;
+            --accent-amber-dim: rgba(245, 158, 11, 0.15);
+            --accent-red: #ef4444;
+            --accent-red-dim: rgba(239, 68, 68, 0.15);
+            --accent-violet: #8b5cf6;
+            --accent-violet-dim: rgba(139, 92, 246, 0.15);
+            --gradient-hero: linear-gradient(135deg, #0a0f1a 0%, #1e293b 50%, #0f172a 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(10, 15, 26, 0.85);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-subtle);
+            padding: 0 2rem;
+        }
+
+        .nav-inner {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 64px;
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .nav-logo {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--accent-blue) 0%, var(--accent-violet) 100%);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Sora', sans-serif;
+            font-weight: 700;
+            font-size: 16px;
+            color: white;
+        }
+
+        .nav-title {
+            font-family: 'Sora', sans-serif;
+            font-weight: 600;
+            font-size: 15px;
+            color: var(--text-primary);
+        }
+
+        .nav-subtitle {
+            font-size: 11px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 4px;
+        }
+
+        .nav-link {
+            padding: 8px 14px;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--text-primary);
+            background: var(--bg-elevated);
+        }
+
+        .nav-link.active {
+            color: var(--accent-blue-light);
+            background: var(--accent-blue-dim);
+        }
+
+        /* Main Content */
+        .main {
+            padding: 100px 2rem 4rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* Hero Verdict */
+        .hero-verdict {
+            background: var(--gradient-hero);
+            border: 1px solid var(--border-medium);
+            border-radius: 24px;
+            padding: 3rem;
+            margin-bottom: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-verdict::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, var(--accent-blue-dim) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .verdict-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--accent-emerald-dim);
+            color: var(--accent-emerald);
+            padding: 6px 14px;
+            border-radius: 100px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 1.5rem;
+        }
+
+        .verdict-badge::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: var(--accent-emerald);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .verdict-title {
+            font-family: 'Sora', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .verdict-highlight {
+            color: var(--accent-blue-light);
+        }
+
+        .verdict-gate {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--accent-amber-dim);
+            border: 1px solid rgba(245, 158, 11, 0.3);
+            color: var(--accent-amber);
+            padding: 12px 20px;
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-top: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .verdict-gate svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        /* Stats Grid */
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            margin-top: 2.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .stat-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 16px;
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .stat-value {
+            font-family: 'Sora', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.25rem;
+        }
+
+        .stat-value.blue { color: var(--accent-blue-light); }
+        .stat-value.emerald { color: var(--accent-emerald); }
+        .stat-value.amber { color: var(--accent-amber); }
+        .stat-value.violet { color: var(--accent-violet); }
+
+        .stat-label {
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        /* Investment Thesis Section */
+        .section {
+            margin-bottom: 2rem;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 1.5rem;
+        }
+
+        .section-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--accent-blue-dim);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent-blue);
+        }
+
+        .section-title {
+            font-family: 'Sora', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+
+        /* Three Paths */
+        .paths-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+
+        .path-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 20px;
+            padding: 1.75rem;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .path-card:hover {
+            border-color: var(--border-medium);
+            transform: translateY(-4px);
+        }
+
+        .path-card.primary {
+            border-color: var(--accent-emerald);
+            background: linear-gradient(to bottom, var(--accent-emerald-dim), var(--bg-card));
+        }
+
+        .path-card.blocked {
+            opacity: 0.7;
+        }
+
+        .path-header {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+        }
+
+        .path-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+        }
+
+        .path-prob {
+            background: var(--bg-elevated);
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .path-prob.high { color: var(--accent-red); background: var(--accent-red-dim); }
+        .path-prob.medium { color: var(--accent-emerald); background: var(--accent-emerald-dim); }
+        .path-prob.low { color: var(--accent-violet); background: var(--accent-violet-dim); }
+
+        .path-title {
+            font-family: 'Sora', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            line-height: 1.3;
+        }
+
+        .path-desc {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 1.25rem;
+            line-height: 1.6;
+        }
+
+        .path-action {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--accent-blue-light);
+            padding-top: 1rem;
+            border-top: 1px solid var(--border-subtle);
+        }
+
+        .path-action.proceed { color: var(--accent-emerald); }
+        .path-action.blocked { color: var(--text-muted); }
+
+        /* Why Invest */
+        .reasons-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+
+        .reason-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 20px;
+            padding: 1.75rem;
+        }
+
+        .reason-number {
+            width: 32px;
+            height: 32px;
+            background: var(--accent-blue-dim);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Sora', sans-serif;
+            font-weight: 700;
+            font-size: 14px;
+            color: var(--accent-blue-light);
+            margin-bottom: 1rem;
+        }
+
+        .reason-title {
+            font-family: 'Sora', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+
+        .reason-desc {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .reason-highlight {
+            background: var(--accent-emerald-dim);
+            color: var(--accent-emerald);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+
+        /* Expected Returns */
+        .returns-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 20px;
+            padding: 2rem;
+        }
+
+        .returns-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .returns-expected {
+            text-align: right;
+        }
+
+        .returns-expected-label {
+            font-size: 12px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .returns-expected-value {
+            font-family: 'Sora', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--accent-emerald);
+        }
+
+        .returns-table {
+            width: 100%;
+        }
+
+        .returns-row {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--border-subtle);
+            align-items: center;
+        }
+
+        .returns-row:last-child {
+            border-bottom: none;
+        }
+
+        .returns-row.header {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--text-muted);
+            padding-bottom: 0.75rem;
+        }
+
+        .returns-scenario {
+            font-weight: 600;
+        }
+
+        .returns-prob {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 13px;
+        }
+
+        .returns-exit, .returns-return {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        .returns-multiple {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .returns-multiple.high { color: var(--accent-emerald); }
+        .returns-multiple.medium { color: var(--accent-amber); }
+        .returns-multiple.low { color: var(--text-muted); }
+
+        /* Deal Killers */
+        .killers-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 1rem;
+        }
+
+        .killer-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 16px;
+            padding: 1.25rem;
+            text-align: center;
+        }
+
+        .killer-icon {
+            width: 44px;
+            height: 44px;
+            background: var(--accent-red-dim);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 0.75rem;
+            color: var(--accent-red);
+        }
+
+        .killer-condition {
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .killer-target {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            color: var(--accent-emerald);
+            margin-bottom: 0.25rem;
+        }
+
+        .killer-redflag {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            color: var(--accent-red);
+        }
+
+        /* Monday Actions */
+        .actions-timeline {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .action-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 16px;
+            padding: 1.25rem 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .action-day {
+            width: 56px;
+            height: 56px;
+            background: var(--accent-blue-dim);
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .action-day-label {
+            font-size: 10px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+        }
+
+        .action-day-num {
+            font-family: 'Sora', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent-blue-light);
+        }
+
+        .action-content {
+            flex: 1;
+        }
+
+        .action-title {
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .action-desc {
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        .action-priority {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            padding: 4px 10px;
+            border-radius: 6px;
+        }
+
+        .action-priority.critical {
+            background: var(--accent-red-dim);
+            color: var(--accent-red);
+        }
+
+        .action-priority.high {
+            background: var(--accent-amber-dim);
+            color: var(--accent-amber);
+        }
+
+        /* Footer Navigation */
+        .footer-nav {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-subtle);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-link {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 20px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 12px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+
+        .footer-link:hover {
+            border-color: var(--accent-blue);
+            color: var(--text-primary);
+        }
+
+        .footer-link.next {
+            background: var(--accent-blue-dim);
+            border-color: var(--accent-blue);
+            color: var(--accent-blue-light);
+        }
+
+        .footer-meta {
+            text-align: center;
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .hero-stats { grid-template-columns: repeat(2, 1fr); }
+            .paths-grid { grid-template-columns: 1fr; }
+            .reasons-grid { grid-template-columns: 1fr; }
+            .killers-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .main { padding: 80px 1rem 2rem; }
+            .hero-verdict { padding: 1.5rem; }
+            .verdict-title { font-size: 1.75rem; }
+            .hero-stats { grid-template-columns: 1fr; }
+            .returns-row { grid-template-columns: 1fr 1fr; gap: 0.5rem; }
+            .killers-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <div class="nav-inner">
+            <div class="nav-brand">
+                <div class="nav-logo">U</div>
+                <div>
+                    <div class="nav-title">Upwind Security</div>
+                    <div class="nav-subtitle">Investment Due Diligence • Dec 2025</div>
+                </div>
+            </div>
+            <div class="nav-links">
+                <a href="page1-verdict.html" class="nav-link active">Verdict</a>
+                <a href="page2-company.html" class="nav-link">Company</a>
+                <a href="page3-product.html" class="nav-link">Product</a>
+                <a href="page4-market.html" class="nav-link">Market</a>
+                <a href="page5-financials.html" class="nav-link">Financials</a>
+                <a href="page6-risk.html" class="nav-link">Risk & Action</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="main">
+        <!-- Hero Verdict -->
+        <section class="hero-verdict">
+            <div class="verdict-badge">Conditional Proceed</div>
+            <h1 class="verdict-title">
+                Invest <span class="verdict-highlight">$50-75M</span> for <span class="verdict-highlight">8-12%</span> ownership<br>
+                Expected return: <span class="verdict-highlight">8.3x</span>
+            </h1>
+            <div class="verdict-gate">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+                </svg>
+                GATE: Datadog may have already acquired them at ~$1B (July 2025 talks). First call should be to Greylock.
+            </div>
+
+            <div class="hero-stats">
+                <div class="stat-card">
+                    <div class="stat-value blue">$900M</div>
+                    <div class="stat-label">Current Valuation</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value emerald">~$50M</div>
+                    <div class="stat-label">Estimated ARR</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value amber">17x</div>
+                    <div class="stat-label">ARR Multiple</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value violet">$180M</div>
+                    <div class="stat-label">Total Raised</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Three Paths -->
+        <section class="section">
+            <div class="section-header">
+                <div class="section-icon">
+                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/>
+                    </svg>
+                </div>
+                <h2 class="section-title">Three Paths Forward</h2>
+            </div>
+
+            <div class="paths-grid">
+                <div class="path-card blocked">
+                    <div class="path-header">
+                        <span class="path-label">Path A</span>
+                        <span class="path-prob high">55-60%</span>
+                    </div>
+                    <h3 class="path-title">Datadog Acquisition Closes</h3>
+                    <p class="path-desc">No investment opportunity. Maintain founder relationship—this team will build again. Track for their next venture.</p>
+                    <div class="path-action blocked">
+                        <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636"/>
+                        </svg>
+                        No Investment Possible
+                    </div>
+                </div>
+
+                <div class="path-card primary">
+                    <div class="path-header">
+                        <span class="path-label">Path B — Recommended</span>
+                        <span class="path-prob medium">30-35%</span>
+                    </div>
+                    <h3 class="path-title">Acquisition Fails, Investment Opens</h3>
+                    <p class="path-desc">Proceed with investment. $50-75M for 8-12% ownership. Position for Series B at $1.5-2.5B within 18 months.</p>
+                    <div class="path-action proceed">
+                        <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                        </svg>
+                        Proceed → IC within 30 days
+                    </div>
+                </div>
+
+                <div class="path-card">
+                    <div class="path-header">
+                        <span class="path-label">Path C</span>
+                        <span class="path-prob low">~10%</span>
+                    </div>
+                    <h3 class="path-title">Salesforce Strategic Acquisition</h3>
+                    <p class="path-desc">If Datadog walks, brief SF M&A immediately. Team and technology would fill critical gaps in security portfolio.</p>
+                    <div class="path-action">
+                        <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+                        </svg>
+                        Move within 30 days if interested
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Why Invest -->
+        <section class="section">
+            <div class="section-header">
+                <div class="section-icon">
+                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                </div>
+                <h2 class="section-title">Three Reasons to Invest</h2>
+            </div>
+
+            <div class="reasons-grid">
+                <div class="reason-card">
+                    <div class="reason-number">1</div>
+                    <h3 class="reason-title">The Team Has Done This Before</h3>
+                    <p class="reason-desc">
+                        Amiram Shachar and co-founders built Spot.io to <span class="reason-highlight">$450M exit</span> to NetApp. 
+                        <strong>~60 Spot.io employees followed them to Upwind</strong>—the kind of loyalty earned through performance. 
+                        CPO Joshua Burgin was one of Amazon's first 100 employees. CSO Rinki Sethi was an Upwind <em>customer</em> before joining.
+                    </p>
+                </div>
+
+                <div class="reason-card">
+                    <div class="reason-number">2</div>
+                    <h3 class="reason-title">Technology Differentiation Is Real</h3>
+                    <p class="reason-desc">
+                        Traditional tools take a photograph and flag what <em>could</em> be a problem. Upwind watches execution and shows what <em>is</em> a problem. 
+                        Result: <span class="reason-highlight">90-98% alert reduction</span>. eBPF runtime monitoring is <strong>2-3 years ahead</strong> of Wiz/Orca who only added it late 2024.
+                    </p>
+                </div>
+
+                <div class="reason-card">
+                    <div class="reason-number">3</div>
+                    <h3 class="reason-title">Market Timing Is Favorable</h3>
+                    <p class="reason-desc">
+                        Wiz-Google $32B acquisition creates <strong>12-18 month window</strong>. AWS/Azure customers nervous about Google ownership. 
+                        Market shifting from posture to detection/response—exactly Upwind's thesis. <span class="reason-highlight">4.9/5 Gartner rating</span> (highest in category).
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Expected Returns -->
+        <section class="section">
+            <div class="section-header">
+                <div class="section-icon">
+                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                </div>
+                <h2 class="section-title">Expected Return Math</h2>
+            </div>
+
+            <div class="returns-card">
+                <div class="returns-header">
+                    <div>
+                        <div style="font-size: 13px; color: var(--text-muted);">Investment Basis</div>
+                        <div style="font-family: 'Sora', sans-serif; font-size: 1.25rem; font-weight: 600;">$75M for 10% ownership</div>
+                    </div>
+                    <div class="returns-expected">
+                        <div class="returns-expected-label">Expected Return</div>
+                        <div class="returns-expected-value">8.3x</div>
+                    </div>
+                </div>
+
+                <div class="returns-table">
+                    <div class="returns-row header">
+                        <span>Scenario</span>
+                        <span>Probability</span>
+                        <span>Exit Value</span>
+                        <span>Our Return</span>
+                        <span>Multiple</span>
+                    </div>
+                    <div class="returns-row">
+                        <span class="returns-scenario">IPO at $15-25B</span>
+                        <span class="returns-prob">20%</span>
+                        <span class="returns-exit">$1.5-2.5B</span>
+                        <span class="returns-return">$150-250M</span>
+                        <span class="returns-multiple high">20-33x</span>
+                    </div>
+                    <div class="returns-row">
+                        <span class="returns-scenario">Strategic Acquisition $3-5B</span>
+                        <span class="returns-prob">35%</span>
+                        <span class="returns-exit">$300-500M</span>
+                        <span class="returns-return">$30-50M</span>
+                        <span class="returns-multiple medium">4-7x</span>
+                    </div>
+                    <div class="returns-row">
+                        <span class="returns-scenario">Base Case $1.5-3B</span>
+                        <span class="returns-prob">30%</span>
+                        <span class="returns-exit">$150-300M</span>
+                        <span class="returns-return">$15-30M</span>
+                        <span class="returns-multiple medium">2-4x</span>
+                    </div>
+                    <div class="returns-row">
+                        <span class="returns-scenario">Disappointing $500M-$1B</span>
+                        <span class="returns-prob">12%</span>
+                        <span class="returns-exit">$50-100M</span>
+                        <span class="returns-return">$5-10M</span>
+                        <span class="returns-multiple low">0.7-1.3x</span>
+                    </div>
+                    <div class="returns-row">
+                        <span class="returns-scenario">Write-off</span>
+                        <span class="returns-prob">3%</span>
+                        <span class="returns-exit">$0</span>
+                        <span class="returns-return">$0</span>
+                        <span class="returns-multiple low">0x</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Deal Killers -->
+        <section class="section">
+            <div class="section-header">
+                <div class="section-icon" style="background: var(--accent-red-dim); color: var(--accent-red);">
+                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+                    </svg>
+                </div>
+                <h2 class="section-title">Five Deal Killers</h2>
+            </div>
+
+            <div class="killers-grid">
+                <div class="killer-card">
+                    <div class="killer-icon">
+                        <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+                        </svg>
+                    </div>
+                    <div class="killer-condition">Datadog Status</div>
+                    <div class="killer-target">✓ Dormant or Dead</div>
+                    <div class="killer-redflag">✗ Active Negotiation</div>
+                </div>
+
+                <div class="killer-card">
+                    <div class="killer-icon">
+                        <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                    </div>
+                    <div class="killer-condition">ARR</div>
+                    <div class="killer-target">✓ $45-60M</div>
+                    <div class="killer-redflag">✗ Below $40M</div>
+                </div>
+
+                <div class="killer-card">
+                    <div class="killer-icon">
+                        <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
+                        </svg>
+                    </div>
+                    <div class="killer-condition">Net Revenue Retention</div>
+                    <div class="killer-target">✓ &gt;110%</div>
+                    <div class="killer-redflag">✗ Below 100%</div>
+                </div>
+
+                <div class="killer-card">
+                    <div class="killer-icon">
+                        <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+                        </svg>
+                    </div>
+                    <div class="killer-condition">Customer Concentration</div>
+                    <div class="killer-target">✓ Top 3 &lt;20% ARR</div>
+                    <div class="killer-redflag">✗ Single &gt;15%</div>
+                </div>
+
+                <div class="killer-card">
+                    <div class="killer-icon">
+                        <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
+                        </svg>
+                    </div>
+                    <div class="killer-condition">Sales Org Health</div>
+                    <div class="killer-target">✓ Stable Leadership</div>
+                    <div class="killer-redflag">✗ &gt;40% Turnover</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Monday Actions -->
+        <section class="section">
+            <div class="section-header">
+                <div class="section-icon" style="background: var(--accent-amber-dim); color: var(--accent-amber);">
+                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                </div>
+                <h2 class="section-title">What To Do Monday Morning</h2>
+            </div>
+
+            <div class="actions-timeline">
+                <div class="action-item">
+                    <div class="action-day">
+                        <span class="action-day-label">Day</span>
+                        <span class="action-day-num">1</span>
+                    </div>
+                    <div class="action-content">
+                        <div class="action-title">Email Saam Motamedi at Greylock</div>
+                        <div class="action-desc">Get clarity on Datadog status. This is the gate that determines everything else.</div>
+                    </div>
+                    <span class="action-priority critical">Critical</span>
+                </div>
+
+                <div class="action-item">
+                    <div class="action-day">
+                        <span class="action-day-label">Day</span>
+                        <span class="action-day-num">1</span>
+                    </div>
+                    <div class="action-content">
+                        <div class="action-title">Reach out to CEO Amiram Shachar</div>
+                        <div class="action-desc">Request data room access and schedule a call. Frame around Salesforce strategic partnership potential.</div>
+                    </div>
+                    <span class="action-priority critical">Critical</span>
+                </div>
+
+                <div class="action-item">
+                    <div class="action-day">
+                        <span class="action-day-label">Day</span>
+                        <span class="action-day-num">2</span>
+                    </div>
+                    <div class="action-content">
+                        <div class="action-title">Brief Salesforce M&A on the opportunity</div>
+                        <div class="action-desc">They should know this exists. Engage financial diligence team for data room prep.</div>
+                    </div>
+                    <span class="action-priority high">High</span>
+                </div>
+
+                <div class="action-item">
+                    <div class="action-day">
+                        <span class="action-day-label">Day</span>
+                        <span class="action-day-num">5</span>
+                    </div>
+                    <div class="action-content">
+                        <div class="action-title">CEO call completed; Datadog status confirmed directly</div>
+                        <div class="action-desc">ARR, NRR, and competitive win rates discussed. Path determination begins.</div>
+                    </div>
+                    <span class="action-priority high">High</span>
+                </div>
+
+                <div class="action-item">
+                    <div class="action-day">
+                        <span class="action-day-label">Day</span>
+                        <span class="action-day-num">7</span>
+                    </div>
+                    <div class="action-content">
+                        <div class="action-title">Path determination: A, B, or C</div>
+                        <div class="action-desc">If Path B: full diligence launch with 30-day target to IC.</div>
+                    </div>
+                    <span class="action-priority high">High</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer Navigation -->
+        <div class="footer-nav">
+            <div></div>
+            <div class="footer-meta">
+                <div>Salesforce Ventures • December 2025</div>
+                <div>Internal Use Only</div>
+            </div>
+            <a href="page2-company.html" class="footer-link next">
+                Company Deep Dive
+                <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                </svg>
+            </a>
+        </div>
+    </main>
+</body>
+</html>

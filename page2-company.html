@@ -1,0 +1,1125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Company Profile | Upwind Security Due Diligence</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0a0f1a;
+            --bg-secondary: #111827;
+            --bg-card: #1a2234;
+            --bg-elevated: #212b42;
+            --text-primary: #f1f5f9;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+            --border-subtle: rgba(148, 163, 184, 0.12);
+            --border-medium: rgba(148, 163, 184, 0.2);
+            --accent-violet: #8b5cf6;
+            --accent-violet-light: #a78bfa;
+            --accent-violet-dim: rgba(139, 92, 246, 0.15);
+            --accent-blue: #3b82f6;
+            --accent-blue-dim: rgba(59, 130, 246, 0.15);
+            --accent-emerald: #10b981;
+            --accent-emerald-dim: rgba(16, 185, 129, 0.15);
+            --accent-amber: #f59e0b;
+            --accent-amber-dim: rgba(245, 158, 11, 0.15);
+            --accent-red: #ef4444;
+            --accent-red-dim: rgba(239, 68, 68, 0.15);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        /* Navigation - Same as Page 1 */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(10, 15, 26, 0.85);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-subtle);
+            padding: 0 2rem;
+        }
+
+        .nav-inner {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 64px;
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .nav-logo {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--accent-blue) 0%, var(--accent-violet) 100%);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Sora', sans-serif;
+            font-weight: 700;
+            font-size: 16px;
+            color: white;
+        }
+
+        .nav-title {
+            font-family: 'Sora', sans-serif;
+            font-weight: 600;
+            font-size: 15px;
+            color: var(--text-primary);
+        }
+
+        .nav-subtitle {
+            font-size: 11px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 4px;
+        }
+
+        .nav-link {
+            padding: 8px 14px;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--text-primary);
+            background: var(--bg-elevated);
+        }
+
+        .nav-link.active {
+            color: var(--accent-violet-light);
+            background: var(--accent-violet-dim);
+        }
+
+        /* Main Content */
+        .main {
+            padding: 100px 2rem 4rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* Page Header */
+        .page-header {
+            margin-bottom: 2.5rem;
+        }
+
+        .page-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--accent-violet-dim);
+            color: var(--accent-violet-light);
+            padding: 6px 14px;
+            border-radius: 100px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 1rem;
+        }
+
+        .page-title {
+            font-family: 'Sora', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .page-desc {
+            font-size: 15px;
+            color: var(--text-secondary);
+            max-width: 700px;
+        }
+
+        /* Corporate Facts */
+        .facts-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .fact-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 16px;
+            padding: 1.25rem;
+        }
+
+        .fact-label {
+            font-size: 12px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.5rem;
+        }
+
+        .fact-value {
+            font-family: 'Sora', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .fact-value.highlight {
+            color: var(--accent-violet-light);
+        }
+
+        /* Section */
+        .section {
+            margin-bottom: 2.5rem;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 1.5rem;
+        }
+
+        .section-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--accent-violet-dim);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent-violet);
+        }
+
+        .section-title {
+            font-family: 'Sora', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+
+        /* Founding Team */
+        .founders-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
+
+        .founder-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 20px;
+            padding: 1.75rem;
+            display: flex;
+            gap: 1.25rem;
+        }
+
+        .founder-avatar {
+            width: 64px;
+            height: 64px;
+            background: var(--accent-violet-dim);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Sora', sans-serif;
+            font-weight: 700;
+            font-size: 20px;
+            color: var(--accent-violet-light);
+            flex-shrink: 0;
+        }
+
+        .founder-info {
+            flex: 1;
+        }
+
+        .founder-name {
+            font-family: 'Sora', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .founder-role {
+            font-size: 13px;
+            color: var(--accent-violet-light);
+            font-weight: 500;
+            margin-bottom: 0.75rem;
+        }
+
+        .founder-bio {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .founder-highlight {
+            background: var(--accent-emerald-dim);
+            color: var(--accent-emerald);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+
+        /* Signal Card */
+        .signal-card {
+            background: linear-gradient(135deg, var(--accent-emerald-dim) 0%, var(--bg-card) 100%);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .signal-title {
+            font-family: 'Sora', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--accent-emerald);
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .signal-text {
+            font-size: 15px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        .signal-number {
+            font-family: 'Sora', sans-serif;
+            font-weight: 800;
+            font-size: 2.5rem;
+            color: var(--accent-emerald);
+        }
+
+        /* Executive Hires */
+        .exec-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+        }
+
+        .exec-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 16px;
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .exec-avatar {
+            width: 56px;
+            height: 56px;
+            background: var(--accent-blue-dim);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Sora', sans-serif;
+            font-weight: 700;
+            font-size: 18px;
+            color: var(--accent-blue);
+            margin: 0 auto 1rem;
+        }
+
+        .exec-name {
+            font-family: 'Sora', sans-serif;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .exec-role {
+            font-size: 12px;
+            color: var(--accent-violet-light);
+            font-weight: 500;
+            margin-bottom: 0.75rem;
+        }
+
+        .exec-prev {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .exec-badge {
+            display: inline-block;
+            background: var(--accent-amber-dim);
+            color: var(--accent-amber);
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 10px;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-top: 0.75rem;
+        }
+
+        /* Board Grid */
+        .board-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 1rem;
+        }
+
+        .board-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 16px;
+            padding: 1.25rem;
+            text-align: center;
+        }
+
+        .board-name {
+            font-family: 'Sora', sans-serif;
+            font-weight: 600;
+            font-size: 14px;
+            margin-bottom: 0.25rem;
+        }
+
+        .board-firm {
+            font-size: 12px;
+            color: var(--accent-violet-light);
+            margin-bottom: 0.5rem;
+        }
+
+        .board-note {
+            font-size: 11px;
+            color: var(--text-muted);
+        }
+
+        /* Funding Timeline */
+        .funding-timeline {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .funding-row {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 16px;
+            padding: 1.5rem;
+            display: grid;
+            grid-template-columns: 120px 100px 1fr 120px;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        .funding-round {
+            font-family: 'Sora', sans-serif;
+            font-weight: 600;
+        }
+
+        .funding-round-badge {
+            background: var(--accent-violet-dim);
+            color: var(--accent-violet-light);
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+            display: inline-block;
+        }
+
+        .funding-amount {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--accent-emerald);
+        }
+
+        .funding-details {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        .funding-lead {
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        .funding-valuation {
+            text-align: right;
+        }
+
+        .funding-val-label {
+            font-size: 11px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+        }
+
+        .funding-val-amount {
+            font-family: 'Sora', sans-serif;
+            font-weight: 600;
+            color: var(--accent-amber);
+        }
+
+        /* Concern Card */
+        .concern-card {
+            background: linear-gradient(135deg, var(--accent-amber-dim) 0%, var(--bg-card) 100%);
+            border: 1px solid rgba(245, 158, 11, 0.3);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .concern-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 1rem;
+        }
+
+        .concern-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--accent-amber-dim);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent-amber);
+        }
+
+        .concern-title {
+            font-family: 'Sora', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--accent-amber);
+        }
+
+        .concern-ratings {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .rating-item {
+            text-align: center;
+            padding: 1rem;
+            background: var(--bg-elevated);
+            border-radius: 12px;
+        }
+
+        .rating-source {
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-bottom: 0.25rem;
+        }
+
+        .rating-value {
+            font-family: 'Sora', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .rating-value.good { color: var(--accent-emerald); }
+        .rating-value.concern { color: var(--accent-red); }
+        .rating-value.gap { color: var(--accent-amber); }
+
+        .rating-label {
+            font-size: 11px;
+            color: var(--text-secondary);
+        }
+
+        .concern-action {
+            background: var(--bg-elevated);
+            padding: 1rem;
+            border-radius: 12px;
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        .concern-action strong {
+            color: var(--text-primary);
+        }
+
+        /* Timeline Events */
+        .events-timeline {
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .events-timeline::before {
+            content: '';
+            position: absolute;
+            left: 7px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--border-medium);
+        }
+
+        .event-item {
+            position: relative;
+            padding-bottom: 1.5rem;
+        }
+
+        .event-item:last-child {
+            padding-bottom: 0;
+        }
+
+        .event-dot {
+            position: absolute;
+            left: -2rem;
+            top: 4px;
+            width: 16px;
+            height: 16px;
+            background: var(--bg-card);
+            border: 3px solid var(--accent-violet);
+            border-radius: 50%;
+        }
+
+        .event-dot.critical {
+            border-color: var(--accent-amber);
+            background: var(--accent-amber);
+        }
+
+        .event-date {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-bottom: 0.25rem;
+        }
+
+        .event-title {
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .event-title.critical {
+            color: var(--accent-amber);
+        }
+
+        .event-desc {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        /* Footer Navigation */
+        .footer-nav {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-subtle);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-link {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 20px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 12px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+
+        .footer-link:hover {
+            border-color: var(--accent-violet);
+            color: var(--text-primary);
+        }
+
+        .footer-link.next {
+            background: var(--accent-violet-dim);
+            border-color: var(--accent-violet);
+            color: var(--accent-violet-light);
+        }
+
+        .footer-meta {
+            text-align: center;
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .facts-grid { grid-template-columns: repeat(2, 1fr); }
+            .founders-grid { grid-template-columns: 1fr; }
+            .exec-grid { grid-template-columns: repeat(2, 1fr); }
+            .board-grid { grid-template-columns: repeat(3, 1fr); }
+            .funding-row { grid-template-columns: 1fr 1fr; }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .main { padding: 80px 1rem 2rem; }
+            .facts-grid { grid-template-columns: 1fr; }
+            .exec-grid { grid-template-columns: 1fr; }
+            .board-grid { grid-template-columns: 1fr 1fr; }
+            .funding-row { grid-template-columns: 1fr; }
+            .concern-ratings { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <div class="nav-inner">
+            <div class="nav-brand">
+                <div class="nav-logo">U</div>
+                <div>
+                    <div class="nav-title">Upwind Security</div>
+                    <div class="nav-subtitle">Investment Due Diligence • Dec 2025</div>
+                </div>
+            </div>
+            <div class="nav-links">
+                <a href="page1-verdict.html" class="nav-link">Verdict</a>
+                <a href="page2-company.html" class="nav-link active">Company</a>
+                <a href="page3-product.html" class="nav-link">Product</a>
+                <a href="page4-market.html" class="nav-link">Market</a>
+                <a href="page5-financials.html" class="nav-link">Financials</a>
+                <a href="page6-risk.html" class="nav-link">Risk & Action</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="main">
+        <!-- Page Header -->
+        <div class="page-header">
+            <div class="page-badge">02 — Company Profile</div>
+            <h1 class="page-title">The Team Behind Upwind</h1>
+            <p class="page-desc">Repeat founders from the $450M Spot.io exit, backed by the most successful cybersecurity investors in Israel, with elite executive hires from AWS, Twitter, and Palo Alto Networks.</p>
+        </div>
+
+        <!-- Corporate Facts -->
+        <div class="facts-grid">
+            <div class="fact-card">
+                <div class="fact-label">Founded</div>
+                <div class="fact-value">September 2022</div>
+            </div>
+            <div class="fact-card">
+                <div class="fact-label">Headquarters</div>
+                <div class="fact-value">San Francisco, CA</div>
+            </div>
+            <div class="fact-card">
+                <div class="fact-label">R&D Hub</div>
+                <div class="fact-value">Tel Aviv, Israel</div>
+            </div>
+            <div class="fact-card">
+                <div class="fact-label">Employees</div>
+                <div class="fact-value highlight">250-320</div>
+            </div>
+            <div class="fact-card">
+                <div class="fact-label">Headcount Growth</div>
+                <div class="fact-value highlight">+84% YoY</div>
+            </div>
+            <div class="fact-card">
+                <div class="fact-label">Total Raised</div>
+                <div class="fact-value">$180M</div>
+            </div>
+            <div class="fact-card">
+                <div class="fact-label">Current Valuation</div>
+                <div class="fact-value highlight">$900M</div>
+            </div>
+            <div class="fact-card">
+                <div class="fact-label">Additional Offices</div>
+                <div class="fact-value">Belfast, Iceland</div>
+            </div>
+        </div>
+
+        <!-- Founding Team -->
+        <section class="section">
+            <div class="section-header">
+                <div class="section-icon">
+                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+                    </svg>
+                </div>
+                <h2 class="section-title">Founding Team</h2>
+            </div>
+
+            <div class="founders-grid">
+                <div class="founder-card">
+                    <div class="founder-avatar">AS</div>
+                    <div class="founder-info">
+                        <div class="founder-name">Amiram Shachar</div>
+                        <div class="founder-role">Co-Founder & CEO</div>
+                        <div class="founder-bio">
+                            Founded and led Spot.io from inception through <span class="founder-highlight">$450M acquisition</span> by NetApp. Post-exit, served as VP & GM managing the acquired business P&L. 
+                            IDF Mamram elite unit. DevOps DNA gives credibility with engineering buyers that traditional security CEOs lack.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="founder-card">
+                    <div class="founder-avatar">TZ</div>
+                    <div class="founder-info">
+                        <div class="founder-name">Tal Zur</div>
+                        <div class="founder-role">Co-Founder & CTO</div>
+                        <div class="founder-bio">
+                            Co-founder at Spot.io with deep expertise in cloud distributed systems and high-scale data ingestion. 
+                            Managed infrastructure handling thousands of concurrent instances—directly applicable to Upwind's terabyte-scale runtime telemetry.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="founder-card">
+                    <div class="founder-avatar">LP</div>
+                    <div class="founder-info">
+                        <div class="founder-name">Liran Polak</div>
+                        <div class="founder-role">Co-Founder & Chief Architect</div>
+                        <div class="founder-bio">
+                            Chief Architect at Spot.io responsible for platform robustness at scale. 
+                            At Upwind, ensures the architecture handles data volume inherent in runtime monitoring without degrading performance.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="founder-card">
+                    <div class="founder-avatar">LF</div>
+                    <div class="founder-info">
+                        <div class="founder-name">Lavi Ferdman</div>
+                        <div class="founder-role">Co-Founder & SVP Growth</div>
+                        <div class="founder-bio">
+                            Co-founder at Spot.io specializing in the intersection of product and sales. 
+                            Focus on "Growth" in the technical sense—building high-velocity sales motions that bridge technical users and economic buyers.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- The Signal That Matters -->
+        <div class="signal-card">
+            <div class="signal-title">
+                <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+                The Strongest Signal in the Investment Case
+            </div>
+            <div style="display: flex; align-items: center; gap: 2rem;">
+                <div class="signal-number">~60</div>
+                <div class="signal-text">
+                    Spot.io employees followed these founders to Upwind. This is the single strongest signal. Employees who worked with these founders—who saw how they operated under pressure, how they treated people, how they executed—<strong>chose to do it again</strong>. 
+                    That's not recruiting. That's reputation. In a competitive talent market where engineers have abundant options, this level of loyalty is earned through performance, not promises.
+                </div>
+            </div>
+        </div>
+
+        <!-- Key Executive Hires -->
+        <section class="section">
+            <div class="section-header">
+                <div class="section-icon" style="background: var(--accent-blue-dim); color: var(--accent-blue);">
+                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                </div>
+                <h2 class="section-title">Key Executive Hires</h2>
+            </div>
+
+            <div class="exec-grid">
+                <div class="exec-card">
+                    <div class="exec-avatar">JB</div>
+                    <div class="exec-name">Joshua Burgin</div>
+                    <div class="exec-role">Chief Product Officer</div>
+                    <div class="exec-prev">GM of EC2 & Outposts at AWS, VP at VMware. One of Amazon's first 100 employees. 20+ patents.</div>
+                    <div class="exec-badge">Tier-1 Product</div>
+                </div>
+
+                <div class="exec-card">
+                    <div class="exec-avatar">RS</div>
+                    <div class="exec-name">Rinki Sethi</div>
+                    <div class="exec-role">Chief Security Officer</div>
+                    <div class="exec-prev">CISO at Twitter, Rubrik, Palo Alto Networks, IBM. Was an Upwind customer before joining.</div>
+                    <div class="exec-badge">Customer → Exec</div>
+                </div>
+
+                <div class="exec-card">
+                    <div class="exec-avatar">MS</div>
+                    <div class="exec-name">Max Stevens</div>
+                    <div class="exec-role">VP Worldwide Sales</div>
+                    <div class="exec-prev">Director of Business Development for Cortex at PANW. Previously at Expanse (acquired by PANW).</div>
+                </div>
+
+                <div class="exec-card">
+                    <div class="exec-avatar">CL</div>
+                    <div class="exec-name">Chas Larios</div>
+                    <div class="exec-role">VP Marketing</div>
+                    <div class="exec-prev">Led marketing for PANW's Unit 42 threat intelligence team and VMware Carbon Black.</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- The Board -->
+        <section class="section">
+            <div class="section-header">
+                <div class="section-icon">
+                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
+                    </svg>
+                </div>
+                <h2 class="section-title">The Board</h2>
+            </div>
+
+            <div class="board-grid">
+                <div class="board-card">
+                    <div class="board-name">Gili Raanan</div>
+                    <div class="board-firm">Cyberstarts</div>
+                    <div class="board-note">Backed Wiz ($32B), Armis ($8.5B), Fireblocks. Most successful cyber investor in Israel.</div>
+                </div>
+
+                <div class="board-card">
+                    <div class="board-name">Shlomo Kramer</div>
+                    <div class="board-firm">Cyberstarts</div>
+                    <div class="board-note">Founded Check Point and Imperva. Most successful Israeli cyber entrepreneur ever.</div>
+                </div>
+
+                <div class="board-card">
+                    <div class="board-name">Saam Motamedi</div>
+                    <div class="board-firm">Greylock Partners</div>
+                    <div class="board-note">GP specializing in AI and cybersecurity. Greylock backed PANW and Sumo Logic.</div>
+                </div>
+
+                <div class="board-card">
+                    <div class="board-name">David Sacks</div>
+                    <div class="board-firm">Craft Ventures</div>
+                    <div class="board-note">Led $100M Series A extension. Track record at Zenefits, Slack.</div>
+                </div>
+
+                <div class="board-card">
+                    <div class="board-name">TCV</div>
+                    <div class="board-firm">Growth Equity</div>
+                    <div class="board-note">Strong enterprise software portfolio. Growth stage specialist.</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sales Culture Concern -->
+        <div class="concern-card">
+            <div class="concern-header">
+                <div class="concern-icon">
+                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+                    </svg>
+                </div>
+                <div class="concern-title">Concern Worth Investigating: Sales Culture</div>
+            </div>
+
+            <div class="concern-ratings">
+                <div class="rating-item">
+                    <div class="rating-source">Glassdoor</div>
+                    <div class="rating-value good">4.8/5</div>
+                    <div class="rating-label">25 reviews • Excellent</div>
+                </div>
+                <div class="rating-item">
+                    <div class="rating-source">RepVue (Sales-specific)</div>
+                    <div class="rating-value concern">2.7/5</div>
+                    <div class="rating-label">Concerning</div>
+                </div>
+                <div class="rating-item">
+                    <div class="rating-source">Gap</div>
+                    <div class="rating-value gap">2.1 pts</div>
+                    <div class="rating-label">Requires Investigation</div>
+                </div>
+            </div>
+
+            <div class="concern-action">
+                <strong>Action Required:</strong> Sales reference calls to validate or explain this discrepancy. Low scores on Professional Development (2.4/5) and Inbound Lead Flow (2.4/5) suggest potential friction. 
+                <strong>Disqualifying threshold:</strong> >40% annual sales turnover or >2 C-level departures in 18 months.
+            </div>
+        </div>
+
+        <!-- Funding History -->
+        <section class="section">
+            <div class="section-header">
+                <div class="section-icon" style="background: var(--accent-emerald-dim); color: var(--accent-emerald);">
+                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                </div>
+                <h2 class="section-title">Funding History</h2>
+            </div>
+
+            <div class="funding-timeline">
+                <div class="funding-row">
+                    <div class="funding-round">
+                        <div class="funding-round-badge">Seed</div>
+                        <div style="font-size: 12px; color: var(--text-muted); margin-top: 4px;">Sept 2022</div>
+                    </div>
+                    <div class="funding-amount">$27.4M</div>
+                    <div class="funding-details">
+                        <span class="funding-lead">Cyberstarts, Greylock</span><br>
+                        <span style="font-size: 13px;">One of the largest seed rounds on record for security software. Allowed Upwind to skip MVP phase and build mature platform immediately.</span>
+                    </div>
+                    <div class="funding-valuation">
+                        <div class="funding-val-label">Valuation</div>
+                        <div class="funding-val-amount">~$100M</div>
+                    </div>
+                </div>
+
+                <div class="funding-row">
+                    <div class="funding-round">
+                        <div class="funding-round-badge">Series A-1</div>
+                        <div style="font-size: 12px; color: var(--text-muted); margin-top: 4px;">Sept 2023</div>
+                    </div>
+                    <div class="funding-amount">$50M</div>
+                    <div class="funding-details">
+                        <span class="funding-lead">Greylock, Cyberstarts</span><br>
+                        <span style="font-size: 13px;">Funded initial go-to-market and US expansion.</span>
+                    </div>
+                    <div class="funding-valuation">
+                        <div class="funding-val-label">Valuation</div>
+                        <div class="funding-val-amount">$300M</div>
+                    </div>
+                </div>
+
+                <div class="funding-row">
+                    <div class="funding-round">
+                        <div class="funding-round-badge">Series A-2</div>
+                        <div style="font-size: 12px; color: var(--text-muted); margin-top: 4px;">Dec 2024</div>
+                    </div>
+                    <div class="funding-amount">$100M</div>
+                    <div class="funding-details">
+                        <span class="funding-lead">Craft Ventures (David Sacks)</span><br>
+                        <span style="font-size: 13px;">Functions as a growth round. The "war chest" raised specifically to counter massive fundraising by competitors like Wiz.</span>
+                    </div>
+                    <div class="funding-valuation">
+                        <div class="funding-val-label">Valuation</div>
+                        <div class="funding-val-amount">$900M</div>
+                    </div>
+                </div>
+            </div>
+
+            <div style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: 12px; padding: 1rem 1.5rem; margin-top: 1rem; display: flex; justify-content: space-between; align-items: center;">
+                <span style="font-size: 14px; color: var(--text-secondary);">Trajectory: <strong style="color: var(--text-primary);">9x valuation increase</strong> in 27 months</span>
+                <span style="font-family: 'JetBrains Mono', monospace; font-size: 13px; background: var(--accent-emerald-dim); color: var(--accent-emerald); padding: 4px 12px; border-radius: 6px;">Top 1% of Enterprise Software Startups</span>
+            </div>
+        </section>
+
+        <!-- Recent Events Timeline -->
+        <section class="section">
+            <div class="section-header">
+                <div class="section-icon" style="background: var(--accent-amber-dim); color: var(--accent-amber);">
+                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                </div>
+                <h2 class="section-title">Last 12 Months Timeline</h2>
+            </div>
+
+            <div class="events-timeline">
+                <div class="event-item">
+                    <div class="event-dot"></div>
+                    <div class="event-date">December 2025</div>
+                    <div class="event-title">NVIDIA partnership expanded for AI security</div>
+                    <div class="event-desc">Positions for AI workload protection market</div>
+                </div>
+
+                <div class="event-item">
+                    <div class="event-dot"></div>
+                    <div class="event-date">November 2025</div>
+                    <div class="event-title">Partner Program launched with 70+ partners</div>
+                    <div class="event-desc">GTM scaling infrastructure</div>
+                </div>
+
+                <div class="event-item">
+                    <div class="event-dot"></div>
+                    <div class="event-date">November 2025</div>
+                    <div class="event-title">FedRAMP pursuit announced via Coalfire partnership</div>
+                    <div class="event-desc">Federal market is $3-5B TAM currently locked</div>
+                </div>
+
+                <div class="event-item">
+                    <div class="event-dot"></div>
+                    <div class="event-date">October 2025</div>
+                    <div class="event-title">Exposure Validation Engine launched</div>
+                    <div class="event-desc">Moves from passive detection to active validation—directly attacks competitors' false positive problem</div>
+                </div>
+
+                <div class="event-item">
+                    <div class="event-dot"></div>
+                    <div class="event-date">August 2025</div>
+                    <div class="event-title">Frost & Sullivan 2025 Company of the Year</div>
+                    <div class="event-desc">Industry recognition</div>
+                </div>
+
+                <div class="event-item">
+                    <div class="event-dot"></div>
+                    <div class="event-date">August 2025</div>
+                    <div class="event-title">Gartner 2025 CNAPP Market Guide inclusion</div>
+                    <div class="event-desc">Category validation; enterprise shortlist eligibility</div>
+                </div>
+
+                <div class="event-item">
+                    <div class="event-dot critical"></div>
+                    <div class="event-date">July 2025</div>
+                    <div class="event-title critical">⚠️ Datadog acquisition talks reported (~$1B)</div>
+                    <div class="event-desc">Changes everything—gates the entire investment</div>
+                </div>
+
+                <div class="event-item">
+                    <div class="event-dot"></div>
+                    <div class="event-date">June 2025</div>
+                    <div class="event-title">Rinki Sethi joins as CSO</div>
+                    <div class="event-desc">Enterprise credibility; customer-to-executive conversion</div>
+                </div>
+
+                <div class="event-item">
+                    <div class="event-dot"></div>
+                    <div class="event-date">April 2025</div>
+                    <div class="event-title">Nyx Security acquisition</div>
+                    <div class="event-desc">Application-layer expansion; demonstrates M&A capability</div>
+                </div>
+
+                <div class="event-item">
+                    <div class="event-dot"></div>
+                    <div class="event-date">December 2024</div>
+                    <div class="event-title">$100M Series A extension at $900M</div>
+                    <div class="event-desc">Major validation; David Sacks/Craft lead</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer Navigation -->
+        <div class="footer-nav">
+            <a href="page1-verdict.html" class="footer-link">
+                <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+                </svg>
+                Executive Verdict
+            </a>
+            <div class="footer-meta">
+                <div>Salesforce Ventures • December 2025</div>
+                <div>Internal Use Only</div>
+            </div>
+            <a href="page3-product.html" class="footer-link next">
+                Product & Technology
+                <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                </svg>
+            </a>
+        </div>
+    </main>
+</body>
+</html>

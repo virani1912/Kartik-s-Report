@@ -1,0 +1,1459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Market & Competition | Upwind Security Due Diligence</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0a0f1a;
+            --bg-secondary: #111827;
+            --bg-card: #1a2234;
+            --bg-elevated: #212b42;
+            --text-primary: #f1f5f9;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+            --border-subtle: rgba(148, 163, 184, 0.12);
+            --border-medium: rgba(148, 163, 184, 0.2);
+            --accent-cyan: #06b6d4;
+            --accent-cyan-light: #22d3ee;
+            --accent-cyan-dim: rgba(6, 182, 212, 0.15);
+            --accent-emerald: #10b981;
+            --accent-emerald-dim: rgba(16, 185, 129, 0.15);
+            --accent-amber: #f59e0b;
+            --accent-amber-dim: rgba(245, 158, 11, 0.15);
+            --accent-red: #ef4444;
+            --accent-red-dim: rgba(239, 68, 68, 0.15);
+            --accent-blue: #3b82f6;
+            --accent-blue-dim: rgba(59, 130, 246, 0.15);
+            --accent-violet: #8b5cf6;
+            --accent-violet-dim: rgba(139, 92, 246, 0.15);
+            --gradient-hero: linear-gradient(135deg, #0a0f1a 0%, #164e63 30%, #0f172a 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(10, 15, 26, 0.85);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-subtle);
+            padding: 0 2rem;
+        }
+
+        .nav-inner {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 64px;
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .nav-logo {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--accent-cyan) 0%, var(--accent-blue) 100%);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Sora', sans-serif;
+            font-weight: 700;
+            font-size: 16px;
+            color: white;
+        }
+
+        .nav-title {
+            font-family: 'Sora', sans-serif;
+            font-weight: 600;
+            font-size: 15px;
+            color: var(--text-primary);
+        }
+
+        .nav-subtitle {
+            font-size: 11px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 4px;
+        }
+
+        .nav-link {
+            padding: 8px 14px;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--text-primary);
+            background: var(--bg-elevated);
+        }
+
+        .nav-link.active {
+            color: var(--accent-cyan-light);
+            background: var(--accent-cyan-dim);
+        }
+
+        /* Main Content */
+        .main {
+            padding: 100px 2rem 4rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* Page Header */
+        .page-header {
+            margin-bottom: 3rem;
+        }
+
+        .page-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--accent-cyan-dim);
+            color: var(--accent-cyan-light);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 1rem;
+        }
+
+        .page-title {
+            font-family: 'Sora', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.75rem;
+        }
+
+        .page-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 700px;
+        }
+
+        /* Section Styling */
+        .section {
+            margin-bottom: 3rem;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 1.5rem;
+        }
+
+        .section-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--accent-cyan-dim);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent-cyan);
+        }
+
+        .section-icon svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        .section-title {
+            font-family: 'Sora', sans-serif;
+            font-size: 1.35rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        /* Market Size Hero */
+        .market-hero {
+            background: var(--gradient-hero);
+            border: 1px solid var(--border-medium);
+            border-radius: 24px;
+            padding: 3rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .market-size {
+            font-family: 'Sora', sans-serif;
+            font-size: 5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--accent-cyan-light) 0%, var(--accent-emerald) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+        }
+
+        .market-label {
+            font-size: 1.3rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+        }
+
+        .market-stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .market-stat {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border-subtle);
+            border-radius: 16px;
+            padding: 1.25rem;
+        }
+
+        .market-stat-value {
+            font-family: 'Sora', sans-serif;
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--accent-cyan-light);
+            margin-bottom: 0.25rem;
+        }
+
+        .market-stat-label {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+
+        /* TAM Breakdown */
+        .tam-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 1rem;
+        }
+
+        .tam-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 16px;
+            padding: 1.25rem;
+            text-align: center;
+        }
+
+        .tam-segment {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            color: var(--accent-cyan);
+            margin-bottom: 0.75rem;
+        }
+
+        .tam-value {
+            font-family: 'Sora', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.25rem;
+        }
+
+        .tam-detail {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        /* Growth Forecast Table */
+        .forecast-table {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .forecast-header {
+            display: grid;
+            grid-template-columns: 100px 1fr 120px 100px;
+            gap: 1rem;
+            padding: 1rem 1.5rem;
+            background: var(--bg-elevated);
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .forecast-header-cell {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            letter-spacing: 0.5px;
+        }
+
+        .forecast-row {
+            display: grid;
+            grid-template-columns: 100px 1fr 120px 100px;
+            gap: 1rem;
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid var(--border-subtle);
+            align-items: center;
+        }
+
+        .forecast-row:last-child {
+            border-bottom: none;
+        }
+
+        .forecast-year {
+            font-family: 'Sora', sans-serif;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .forecast-bar-container {
+            position: relative;
+            height: 32px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .forecast-bar {
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent-cyan) 0%, var(--accent-cyan-light) 100%);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            padding-left: 12px;
+        }
+
+        .forecast-bar-value {
+            font-family: 'Sora', sans-serif;
+            font-weight: 600;
+            font-size: 0.875rem;
+            color: white;
+        }
+
+        .forecast-growth {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--accent-emerald);
+        }
+
+        .forecast-confidence {
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .conf-high {
+            background: var(--accent-emerald-dim);
+            color: var(--accent-emerald);
+        }
+
+        .conf-medium {
+            background: var(--accent-amber-dim);
+            color: var(--accent-amber);
+        }
+
+        .conf-low {
+            background: var(--accent-red-dim);
+            color: var(--accent-red);
+        }
+
+        /* Why Now Cards */
+        .why-now-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+        }
+
+        .why-now-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 16px;
+            padding: 1.25rem;
+            transition: all 0.2s ease;
+        }
+
+        .why-now-card:hover {
+            border-color: var(--accent-cyan);
+            transform: translateY(-2px);
+        }
+
+        .why-now-number {
+            font-family: 'Sora', sans-serif;
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--accent-cyan);
+            opacity: 0.4;
+            margin-bottom: 0.5rem;
+        }
+
+        .why-now-title {
+            font-family: 'Sora', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .why-now-desc {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        /* Competitive Matrix */
+        .matrix-wrapper {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .matrix-header {
+            display: grid;
+            grid-template-columns: 150px repeat(5, 1fr);
+            background: var(--bg-elevated);
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .matrix-cell {
+            padding: 1rem;
+            font-size: 0.875rem;
+            border-right: 1px solid var(--border-subtle);
+        }
+
+        .matrix-cell:last-child {
+            border-right: none;
+        }
+
+        .matrix-header .matrix-cell {
+            font-family: 'Sora', sans-serif;
+            font-weight: 600;
+            color: var(--text-primary);
+            text-align: center;
+        }
+
+        .matrix-header .matrix-cell:first-child {
+            text-align: left;
+        }
+
+        .matrix-row {
+            display: grid;
+            grid-template-columns: 150px repeat(5, 1fr);
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .matrix-row:last-child {
+            border-bottom: none;
+        }
+
+        .matrix-row .matrix-cell:first-child {
+            font-weight: 500;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+        }
+
+        .matrix-row .matrix-cell:not(:first-child) {
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .matrix-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 28px;
+            height: 28px;
+            border-radius: 8px;
+            font-size: 0.75rem;
+        }
+
+        .matrix-win {
+            background: var(--accent-emerald-dim);
+            color: var(--accent-emerald);
+        }
+
+        .matrix-partial {
+            background: var(--accent-amber-dim);
+            color: var(--accent-amber);
+        }
+
+        .matrix-lose {
+            background: var(--accent-red-dim);
+            color: var(--accent-red);
+        }
+
+        .matrix-neutral {
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-muted);
+        }
+
+        /* Upwind Highlight */
+        .matrix-header .matrix-cell.upwind-col {
+            background: var(--accent-cyan-dim);
+            color: var(--accent-cyan-light);
+        }
+
+        .matrix-row .matrix-cell.upwind-col {
+            background: rgba(6, 182, 212, 0.05);
+        }
+
+        /* Market Share Chart */
+        .share-chart {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 20px;
+            padding: 2rem;
+        }
+
+        .share-row {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .share-row:last-child {
+            margin-bottom: 0;
+        }
+
+        .share-name {
+            width: 120px;
+            font-weight: 500;
+            color: var(--text-primary);
+            font-size: 0.875rem;
+        }
+
+        .share-bar-wrap {
+            flex: 1;
+            height: 28px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 8px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .share-bar {
+            height: 100%;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding-right: 12px;
+        }
+
+        .share-bar-wiz {
+            background: linear-gradient(90deg, #8b5cf6 0%, #a78bfa 100%);
+        }
+
+        .share-bar-msft {
+            background: linear-gradient(90deg, #3b82f6 0%, #60a5fa 100%);
+        }
+
+        .share-bar-prisma {
+            background: linear-gradient(90deg, #f59e0b 0%, #fbbf24 100%);
+        }
+
+        .share-bar-orca {
+            background: linear-gradient(90deg, #10b981 0%, #34d399 100%);
+        }
+
+        .share-bar-sentinel {
+            background: linear-gradient(90deg, #ef4444 0%, #f87171 100%);
+        }
+
+        .share-bar-upwind {
+            background: linear-gradient(90deg, var(--accent-cyan) 0%, var(--accent-cyan-light) 100%);
+        }
+
+        .share-value {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: white;
+        }
+
+        .share-change {
+            width: 80px;
+            text-align: right;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .share-up {
+            color: var(--accent-emerald);
+        }
+
+        .share-down {
+            color: var(--accent-red);
+        }
+
+        /* Wiz Comparison */
+        .vs-grid {
+            display: grid;
+            grid-template-columns: 1fr 100px 1fr;
+            gap: 2rem;
+            align-items: start;
+        }
+
+        .vs-company {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 20px;
+            padding: 1.5rem;
+        }
+
+        .vs-company.upwind {
+            border-color: var(--accent-cyan);
+            background: linear-gradient(180deg, rgba(6, 182, 212, 0.1) 0%, var(--bg-card) 100%);
+        }
+
+        .vs-company.wiz {
+            border-color: var(--accent-violet);
+            background: linear-gradient(180deg, rgba(139, 92, 246, 0.1) 0%, var(--bg-card) 100%);
+        }
+
+        .vs-name {
+            font-family: 'Sora', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .vs-badge {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10px;
+            font-weight: 600;
+            padding: 4px 8px;
+            border-radius: 4px;
+            text-transform: uppercase;
+        }
+
+        .vs-badge.challenger {
+            background: var(--accent-cyan-dim);
+            color: var(--accent-cyan);
+        }
+
+        .vs-badge.leader {
+            background: var(--accent-violet-dim);
+            color: var(--accent-violet);
+        }
+
+        .vs-items {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .vs-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 10px;
+        }
+
+        .vs-item-label {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+
+        .vs-item-value {
+            font-family: 'Sora', sans-serif;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .vs-center {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding-top: 4rem;
+        }
+
+        .vs-versus {
+            font-family: 'Sora', sans-serif;
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--text-muted);
+        }
+
+        /* Expansion Vectors */
+        .vectors-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+        }
+
+        .vector-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 16px;
+            padding: 1.5rem;
+        }
+
+        .vector-name {
+            font-family: 'Sora', sans-serif;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .vector-tam {
+            font-family: 'Sora', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent-cyan-light);
+            margin-bottom: 0.5rem;
+        }
+
+        .vector-timeline {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        /* Wiz-Google Impact */
+        .impact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .impact-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 16px;
+            padding: 1.5rem;
+        }
+
+        .impact-card.opportunity {
+            border-color: var(--accent-emerald);
+            background: linear-gradient(180deg, rgba(16, 185, 129, 0.08) 0%, var(--bg-card) 100%);
+        }
+
+        .impact-card.risk {
+            border-color: var(--accent-red);
+            background: linear-gradient(180deg, rgba(239, 68, 68, 0.08) 0%, var(--bg-card) 100%);
+        }
+
+        .impact-title {
+            font-family: 'Sora', sans-serif;
+            font-weight: 600;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .impact-card.opportunity .impact-title {
+            color: var(--accent-emerald);
+        }
+
+        .impact-card.risk .impact-title {
+            color: var(--accent-red);
+        }
+
+        .impact-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .impact-list li {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            padding-left: 1.25rem;
+            position: relative;
+        }
+
+        .impact-list li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--text-muted);
+        }
+
+        /* Footer Navigation */
+        .footer-nav {
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-subtle);
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+
+        .footer-link {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 20px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 12px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+
+        .footer-link:hover {
+            border-color: var(--accent-cyan);
+            color: var(--text-primary);
+        }
+
+        .footer-link.next {
+            background: var(--accent-cyan-dim);
+            border-color: var(--accent-cyan);
+            color: var(--accent-cyan-light);
+        }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .market-stats { grid-template-columns: repeat(2, 1fr); }
+            .tam-grid { grid-template-columns: repeat(3, 1fr); }
+            .why-now-grid { grid-template-columns: repeat(2, 1fr); }
+            .vectors-grid { grid-template-columns: repeat(2, 1fr); }
+            .vs-grid { grid-template-columns: 1fr; gap: 1rem; }
+            .vs-center { display: none; }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .main { padding: 80px 1rem 2rem; }
+            .market-size { font-size: 3rem; }
+            .market-stats { grid-template-columns: 1fr; }
+            .tam-grid { grid-template-columns: 1fr; }
+            .why-now-grid { grid-template-columns: 1fr; }
+            .vectors-grid { grid-template-columns: 1fr; }
+            .matrix-wrapper { overflow-x: auto; }
+            .matrix-header, .matrix-row { min-width: 800px; }
+            .impact-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <div class="nav-inner">
+            <div class="nav-brand">
+                <div class="nav-logo">U</div>
+                <div>
+                    <div class="nav-title">Upwind Security</div>
+                    <div class="nav-subtitle">Investment Due Diligence • Dec 2025</div>
+                </div>
+            </div>
+            <div class="nav-links">
+                <a href="page1-verdict.html" class="nav-link">Verdict</a>
+                <a href="page2-company.html" class="nav-link">Company</a>
+                <a href="page3-product.html" class="nav-link">Product</a>
+                <a href="page4-market.html" class="nav-link active">Market</a>
+                <a href="page5-financials.html" class="nav-link">Financials</a>
+                <a href="page6-risk.html" class="nav-link">Risk & Action</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="main">
+        <!-- Page Header -->
+        <header class="page-header">
+            <div class="page-badge">
+                <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
+                </svg>
+                Section 4 of 6
+            </div>
+            <h1 class="page-title">Market & Competition</h1>
+            <p class="page-subtitle">CNAPP market sizing, growth trajectory, competitive positioning, and the window of opportunity created by Wiz-Google.</p>
+        </header>
+
+        <!-- Market Size Hero -->
+        <section class="market-hero">
+            <div class="market-size">$5-6B</div>
+            <div class="market-label">CNAPP Market Size (2025)</div>
+            
+            <div class="market-stats">
+                <div class="market-stat">
+                    <div class="market-stat-value">35-40%</div>
+                    <div class="market-stat-label">Annual Growth Rate</div>
+                </div>
+                <div class="market-stat">
+                    <div class="market-stat-value">$15-20B</div>
+                    <div class="market-stat-label">Projected 2028</div>
+                </div>
+                <div class="market-stat">
+                    <div class="market-stat-value">24.9%</div>
+                    <div class="market-stat-label">Cloud Security CAGR</div>
+                </div>
+                <div class="market-stat">
+                    <div class="market-stat-value">$32B</div>
+                    <div class="market-stat-label">Wiz Valuation (Google)</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAM Breakdown -->
+        <section class="section">
+            <div class="section-header">
+                <div class="section-icon">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+                    </svg>
+                </div>
+                <h2 class="section-title">TAM Breakdown</h2>
+            </div>
+            
+            <div class="tam-grid">
+                <div class="tam-card">
+                    <div class="tam-segment">Fortune 500</div>
+                    <div class="tam-value">$400M</div>
+                    <div class="tam-detail">500 customers × $800K ACV</div>
+                </div>
+                <div class="tam-card">
+                    <div class="tam-segment">Global 2000</div>
+                    <div class="tam-value">$750M</div>
+                    <div class="tam-detail">1,500 customers × $500K ACV</div>
+                </div>
+                <div class="tam-card">
+                    <div class="tam-segment">Large Enterprise</div>
+                    <div class="tam-value">$1.5B</div>
+                    <div class="tam-detail">5,000 customers × $300K ACV</div>
+                </div>
+                <div class="tam-card">
+                    <div class="tam-segment">Mid-Market</div>
+                    <div class="tam-value">$2.0B</div>
+                    <div class="tam-detail">20,000 customers × $100K ACV</div>
+                </div>
+                <div class="tam-card">
+                    <div class="tam-segment">SMB (Cloud)</div>
+                    <div class="tam-value">$3.0B+</div>
+                    <div class="tam-detail">100,000+ customers × $30K ACV</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Growth Forecast -->
+        <section class="section">
+            <div class="section-header">
+                <div class="section-icon">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z"/>
+                    </svg>
+                </div>
+                <h2 class="section-title">Market Growth Forecast</h2>
+            </div>
+            
+            <div class="forecast-table">
+                <div class="forecast-header">
+                    <div class="forecast-header-cell">Year</div>
+                    <div class="forecast-header-cell">Market Size</div>
+                    <div class="forecast-header-cell">Growth</div>
+                    <div class="forecast-header-cell">Confidence</div>
+                </div>
+                <div class="forecast-row">
+                    <div class="forecast-year">2024</div>
+                    <div class="forecast-bar-container">
+                        <div class="forecast-bar" style="width: 27%;">
+                            <span class="forecast-bar-value">$3.5-4.0B</span>
+                        </div>
+                    </div>
+                    <div class="forecast-growth">—</div>
+                    <div><span class="forecast-confidence conf-high">HIGH</span></div>
+                </div>
+                <div class="forecast-row">
+                    <div class="forecast-year">2025</div>
+                    <div class="forecast-bar-container">
+                        <div class="forecast-bar" style="width: 40%;">
+                            <span class="forecast-bar-value">$5-6B</span>
+                        </div>
+                    </div>
+                    <div class="forecast-growth">+42%</div>
+                    <div><span class="forecast-confidence conf-high">HIGH</span></div>
+                </div>
+                <div class="forecast-row">
+                    <div class="forecast-year">2026</div>
+                    <div class="forecast-bar-container">
+                        <div class="forecast-bar" style="width: 55%;">
+                            <span class="forecast-bar-value">$7-9B</span>
+                        </div>
+                    </div>
+                    <div class="forecast-growth">+35-40%</div>
+                    <div><span class="forecast-confidence conf-high">HIGH</span></div>
+                </div>
+                <div class="forecast-row">
+                    <div class="forecast-year">2027</div>
+                    <div class="forecast-bar-container">
+                        <div class="forecast-bar" style="width: 73%;">
+                            <span class="forecast-bar-value">$10-12B</span>
+                        </div>
+                    </div>
+                    <div class="forecast-growth">+30-35%</div>
+                    <div><span class="forecast-confidence conf-medium">MEDIUM</span></div>
+                </div>
+                <div class="forecast-row">
+                    <div class="forecast-year">2028</div>
+                    <div class="forecast-bar-container">
+                        <div class="forecast-bar" style="width: 90%;">
+                            <span class="forecast-bar-value">$12-15B</span>
+                        </div>
+                    </div>
+                    <div class="forecast-growth">+25-30%</div>
+                    <div><span class="forecast-confidence conf-medium">MEDIUM</span></div>
+                </div>
+                <div class="forecast-row">
+                    <div class="forecast-year">2030</div>
+                    <div class="forecast-bar-container">
+                        <div class="forecast-bar" style="width: 100%;">
+                            <span class="forecast-bar-value">$16-22B</span>
+                        </div>
+                    </div>
+                    <div class="forecast-growth">+15-20%</div>
+                    <div><span class="forecast-confidence conf-low">LOW</span></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Market Share -->
+        <section class="section">
+            <div class="section-header">
+                <div class="section-icon">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z"/>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z"/>
+                    </svg>
+                </div>
+                <h2 class="section-title">Market Mindshare (PeerSpot, Dec 2025)</h2>
+            </div>
+            
+            <div class="share-chart">
+                <div class="share-row">
+                    <div class="share-name">Wiz</div>
+                    <div class="share-bar-wrap">
+                        <div class="share-bar share-bar-wiz" style="width: 21.6%;">
+                            <span class="share-value">21.6%</span>
+                        </div>
+                    </div>
+                    <div class="share-change share-down">↓ from 25.9%</div>
+                </div>
+                <div class="share-row">
+                    <div class="share-name">Microsoft</div>
+                    <div class="share-bar-wrap">
+                        <div class="share-bar share-bar-msft" style="width: 18%;">
+                            <span class="share-value">~18%</span>
+                        </div>
+                    </div>
+                    <div class="share-change" style="color: var(--text-muted);">—</div>
+                </div>
+                <div class="share-row">
+                    <div class="share-name">Prisma Cloud</div>
+                    <div class="share-bar-wrap">
+                        <div class="share-bar share-bar-prisma" style="width: 12%;">
+                            <span class="share-value">~12%</span>
+                        </div>
+                    </div>
+                    <div class="share-change" style="color: var(--text-muted);">—</div>
+                </div>
+                <div class="share-row">
+                    <div class="share-name">Orca</div>
+                    <div class="share-bar-wrap">
+                        <div class="share-bar share-bar-orca" style="width: 7.2%;">
+                            <span class="share-value">7.2%</span>
+                        </div>
+                    </div>
+                    <div class="share-change" style="color: var(--text-muted);">—</div>
+                </div>
+                <div class="share-row">
+                    <div class="share-name">SentinelOne</div>
+                    <div class="share-bar-wrap">
+                        <div class="share-bar share-bar-sentinel" style="width: 4.7%;">
+                            <span class="share-value">4.7%</span>
+                        </div>
+                    </div>
+                    <div class="share-change" style="color: var(--text-muted);">—</div>
+                </div>
+                <div class="share-row">
+                    <div class="share-name">Upwind</div>
+                    <div class="share-bar-wrap">
+                        <div class="share-bar share-bar-upwind" style="width: 3.8%;">
+                            <span class="share-value">3.8%</span>
+                        </div>
+                    </div>
+                    <div class="share-change share-up">↑ 4.2x YoY</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Why Now -->
+        <section class="section">
+            <div class="section-header">
+                <div class="section-icon">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                </div>
+                <h2 class="section-title">Why Now: Market Timing Factors</h2>
+            </div>
+            
+            <div class="why-now-grid">
+                <div class="why-now-card">
+                    <div class="why-now-number">01</div>
+                    <div class="why-now-title">Alert Fatigue Crisis</div>
+                    <div class="why-now-desc">70%+ of alerts go uninvestigated. Security tools have become their own operational burden. Buyers desperate for prioritization.</div>
+                </div>
+                <div class="why-now-card">
+                    <div class="why-now-number">02</div>
+                    <div class="why-now-title">The "Wiz Hangover"</div>
+                    <div class="why-now-desc">Organizations bought Wiz for visibility. Now drowning in theoretical vulnerabilities. Next wave of spend goes to context—Upwind's thesis.</div>
+                </div>
+                <div class="why-now-card">
+                    <div class="why-now-number">03</div>
+                    <div class="why-now-title">eBPF Maturity</div>
+                    <div class="why-now-desc">eBPF reached stability in Linux kernels 2018-2020. Now enterprise-ready. Technology risk largely resolved.</div>
+                </div>
+                <div class="why-now-card">
+                    <div class="why-now-number">04</div>
+                    <div class="why-now-title">Kubernetes Ubiquity</div>
+                    <div class="why-now-desc">70%+ enterprises now use Kubernetes. Container adoption continues growing (50% by 2029). Addressable footprint expands continuously.</div>
+                </div>
+                <div class="why-now-card">
+                    <div class="why-now-number">05</div>
+                    <div class="why-now-title">Regulatory Pressure</div>
+                    <div class="why-now-desc">SEC's 4-day breach disclosure rules (2023) increase urgency. Boards care about cyber risk in unprecedented ways.</div>
+                </div>
+                <div class="why-now-card">
+                    <div class="why-now-number">06</div>
+                    <div class="why-now-title">Consolidation Demand</div>
+                    <div class="why-now-desc">75% of organizations want fewer security tools (Gartner). Comprehensive platforms beat point solutions.</div>
+                </div>
+                <div class="why-now-card">
+                    <div class="why-now-number">07</div>
+                    <div class="why-now-title">Wiz-Google Disruption</div>
+                    <div class="why-now-desc">AWS and Azure customers nervous about Google-owned security vendor. 12-18 month window for alternatives to capture displaced demand.</div>
+                </div>
+                <div class="why-now-card" style="background: linear-gradient(180deg, rgba(6, 182, 212, 0.1) 0%, var(--bg-card) 100%); border-color: var(--accent-cyan);">
+                    <div class="why-now-number" style="color: var(--accent-cyan-light);">★</div>
+                    <div class="why-now-title">Convergence Window</div>
+                    <div class="why-now-desc">All 7 factors converging simultaneously. This is the optimal moment for Upwind's runtime-first approach.</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Competitive Matrix -->
+        <section class="section">
+            <div class="section-header">
+                <div class="section-icon">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16"/>
+                    </svg>
+                </div>
+                <h2 class="section-title">Competitive Matrix</h2>
+            </div>
+            
+            <div class="matrix-wrapper">
+                <div class="matrix-header">
+                    <div class="matrix-cell">Dimension</div>
+                    <div class="matrix-cell upwind-col">Upwind</div>
+                    <div class="matrix-cell">Wiz</div>
+                    <div class="matrix-cell">Orca</div>
+                    <div class="matrix-cell">Sysdig</div>
+                    <div class="matrix-cell">Prisma</div>
+                </div>
+                <div class="matrix-row">
+                    <div class="matrix-cell">Runtime Maturity</div>
+                    <div class="matrix-cell upwind-col"><span class="matrix-badge matrix-win">3+ yr</span></div>
+                    <div class="matrix-cell"><span class="matrix-badge matrix-lose">12 mo</span></div>
+                    <div class="matrix-cell"><span class="matrix-badge matrix-lose">12 mo</span></div>
+                    <div class="matrix-cell"><span class="matrix-badge matrix-partial">2 yr</span></div>
+                    <div class="matrix-cell"><span class="matrix-badge matrix-partial">18 mo</span></div>
+                </div>
+                <div class="matrix-row">
+                    <div class="matrix-cell">Alert Reduction</div>
+                    <div class="matrix-cell upwind-col"><span class="matrix-badge matrix-win">90%+</span></div>
+                    <div class="matrix-cell"><span class="matrix-badge matrix-lose">Low</span></div>
+                    <div class="matrix-cell"><span class="matrix-badge matrix-partial">Med</span></div>
+                    <div class="matrix-cell"><span class="matrix-badge matrix-partial">Med</span></div>
+                    <div class="matrix-cell"><span class="matrix-badge matrix-lose">Low</span></div>
+                </div>
+                <div class="matrix-row">
+                    <div class="matrix-cell">Deployment Speed</div>
+                    <div class="matrix-cell upwind-col"><span class="matrix-badge matrix-partial">Hours</span></div>
+                    <div class="matrix-cell"><span class="matrix-badge matrix-win">Mins</span></div>
+                    <div class="matrix-cell"><span class="matrix-badge matrix-win">Mins</span></div>
+                    <div class="matrix-cell"><span class="matrix-badge matrix-lose">Days</span></div>
+                    <div class="matrix-cell"><span class="matrix-badge matrix-partial">Hours</span></div>
+                </div>
+                <div class="matrix-row">
+                    <div class="matrix-cell">Windows Coverage</div>
+                    <div class="matrix-cell upwind-col"><span class="matrix-badge matrix-lose">Agent</span></div>
+                    <div class="matrix-cell"><span class="matrix-badge matrix-win">Full</span></div>
+                    <div class="matrix-cell"><span class="matrix-badge matrix-win">Full</span></div>
+                    <div class="matrix-cell"><span class="matrix-badge matrix-partial">Agent</span></div>
+                    <div class="matrix-cell"><span class="matrix-badge matrix-win">Full</span></div>
+                </div>
+                <div class="matrix-row">
+                    <div class="matrix-cell">Architecture</div>
+                    <div class="matrix-cell upwind-col"><span class="matrix-badge matrix-win">Hybrid</span></div>
+                    <div class="matrix-cell"><span class="matrix-badge matrix-partial">Hybrid*</span></div>
+                    <div class="matrix-cell"><span class="matrix-badge matrix-partial">Hybrid*</span></div>
+                    <div class="matrix-cell"><span class="matrix-badge matrix-partial">Agent</span></div>
+                    <div class="matrix-cell"><span class="matrix-badge matrix-lose">Mixed</span></div>
+                </div>
+                <div class="matrix-row">
+                    <div class="matrix-cell">Gartner Rating</div>
+                    <div class="matrix-cell upwind-col"><span class="matrix-badge matrix-win">4.9</span></div>
+                    <div class="matrix-cell"><span class="matrix-badge matrix-partial">4.7</span></div>
+                    <div class="matrix-cell"><span class="matrix-badge matrix-partial">4.6</span></div>
+                    <div class="matrix-cell"><span class="matrix-badge matrix-partial">4.5</span></div>
+                    <div class="matrix-cell"><span class="matrix-badge matrix-partial">4.5</span></div>
+                </div>
+                <div class="matrix-row">
+                    <div class="matrix-cell">Market Position</div>
+                    <div class="matrix-cell upwind-col"><span class="matrix-badge matrix-neutral">Challenger</span></div>
+                    <div class="matrix-cell"><span class="matrix-badge matrix-win">Leader</span></div>
+                    <div class="matrix-cell"><span class="matrix-badge matrix-partial">Est.</span></div>
+                    <div class="matrix-cell"><span class="matrix-badge matrix-partial">Est.</span></div>
+                    <div class="matrix-cell"><span class="matrix-badge matrix-win">Est.</span></div>
+                </div>
+                <div class="matrix-row">
+                    <div class="matrix-cell">Cloud Neutral</div>
+                    <div class="matrix-cell upwind-col"><span class="matrix-badge matrix-win">✓</span></div>
+                    <div class="matrix-cell"><span class="matrix-badge matrix-lose">Google</span></div>
+                    <div class="matrix-cell"><span class="matrix-badge matrix-win">✓</span></div>
+                    <div class="matrix-cell"><span class="matrix-badge matrix-win">✓</span></div>
+                    <div class="matrix-cell"><span class="matrix-badge matrix-win">✓</span></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Upwind vs Wiz -->
+        <section class="section">
+            <div class="section-header">
+                <div class="section-icon">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+                    </svg>
+                </div>
+                <h2 class="section-title">Deep Dive: Upwind vs Wiz</h2>
+            </div>
+            
+            <div class="vs-grid">
+                <div class="vs-company upwind">
+                    <div class="vs-name">
+                        Upwind
+                        <span class="vs-badge challenger">Challenger</span>
+                    </div>
+                    <div class="vs-items">
+                        <div class="vs-item">
+                            <span class="vs-item-label">Valuation</span>
+                            <span class="vs-item-value">$900M</span>
+                        </div>
+                        <div class="vs-item">
+                            <span class="vs-item-label">ARR (Est.)</span>
+                            <span class="vs-item-value">~$50M</span>
+                        </div>
+                        <div class="vs-item">
+                            <span class="vs-item-label">Multiple</span>
+                            <span class="vs-item-value">17x</span>
+                        </div>
+                        <div class="vs-item">
+                            <span class="vs-item-label">Architecture</span>
+                            <span class="vs-item-value">Hybrid (Day 1)</span>
+                        </div>
+                        <div class="vs-item">
+                            <span class="vs-item-label">Runtime Lead</span>
+                            <span class="vs-item-value" style="color: var(--accent-emerald);">3+ Years</span>
+                        </div>
+                        <div class="vs-item">
+                            <span class="vs-item-label">Gartner</span>
+                            <span class="vs-item-value" style="color: var(--accent-emerald);">4.9/5</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="vs-center">
+                    <div class="vs-versus">vs</div>
+                </div>
+                
+                <div class="vs-company wiz">
+                    <div class="vs-name">
+                        Wiz
+                        <span class="vs-badge leader">Leader</span>
+                    </div>
+                    <div class="vs-items">
+                        <div class="vs-item">
+                            <span class="vs-item-label">Valuation</span>
+                            <span class="vs-item-value">$32B (Google)</span>
+                        </div>
+                        <div class="vs-item">
+                            <span class="vs-item-label">ARR</span>
+                            <span class="vs-item-value">$700M+</span>
+                        </div>
+                        <div class="vs-item">
+                            <span class="vs-item-label">Multiple</span>
+                            <span class="vs-item-value">46x</span>
+                        </div>
+                        <div class="vs-item">
+                            <span class="vs-item-label">Architecture</span>
+                            <span class="vs-item-value">Agentless→Hybrid</span>
+                        </div>
+                        <div class="vs-item">
+                            <span class="vs-item-label">Runtime (Defend)</span>
+                            <span class="vs-item-value" style="color: var(--accent-red);">12 Months</span>
+                        </div>
+                        <div class="vs-item">
+                            <span class="vs-item-label">Gartner</span>
+                            <span class="vs-item-value">4.7/5</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAM Expansion Vectors -->
+        <section class="section">
+            <div class="section-header">
+                <div class="section-icon">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"/>
+                    </svg>
+                </div>
+                <h2 class="section-title">TAM Expansion Vectors</h2>
+            </div>
+            
+            <div class="vectors-grid">
+                <div class="vector-card">
+                    <div class="vector-name">FedRAMP / Federal</div>
+                    <div class="vector-tam">$3-5B</div>
+                    <div class="vector-timeline">2026-2028</div>
+                </div>
+                <div class="vector-card">
+                    <div class="vector-name">AI Workload Security</div>
+                    <div class="vector-tam">$2-4B</div>
+                    <div class="vector-timeline">2026-2030</div>
+                </div>
+                <div class="vector-card">
+                    <div class="vector-name">Data Security (DSPM)</div>
+                    <div class="vector-tam">$2-3B</div>
+                    <div class="vector-timeline">2025-2028</div>
+                </div>
+                <div class="vector-card">
+                    <div class="vector-name">App Security Integration</div>
+                    <div class="vector-tam">$3-5B</div>
+                    <div class="vector-timeline">2027-2030</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Wiz-Google Impact -->
+        <section class="section">
+            <div class="section-header">
+                <div class="section-icon">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                    </svg>
+                </div>
+                <h2 class="section-title">Wiz-Google Acquisition Impact</h2>
+            </div>
+            
+            <div class="impact-grid">
+                <div class="impact-card opportunity">
+                    <div class="impact-title">
+                        <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                        Opportunities for Upwind
+                    </div>
+                    <ul class="impact-list">
+                        <li>Cloud neutrality concerns: AWS and Azure-primary enterprises prefer independent vendor</li>
+                        <li>Innovation slowdown: Google integration typically absorbs management attention</li>
+                        <li>Customer displacement: Enterprises actively evaluating alternatives</li>
+                        <li>12-18 month window before integration concerns fade</li>
+                    </ul>
+                </div>
+                <div class="impact-card risk">
+                    <div class="impact-title">
+                        <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+                        </svg>
+                        Risks to Monitor
+                    </div>
+                    <ul class="impact-list">
+                        <li>Google resources accelerate Wiz's capability development</li>
+                        <li>Google distribution could extend Wiz's reach</li>
+                        <li>Bundling and discounting could pressure pricing</li>
+                        <li>Displacement window is time-limited</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer Navigation -->
+        <nav class="footer-nav">
+            <a href="page3-product.html" class="footer-link">
+                <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+                </svg>
+                Product & Technology
+            </a>
+            <a href="page5-financials.html" class="footer-link next">
+                Financials & Exit
+                <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                </svg>
+            </a>
+        </nav>
+    </main>
+</body>
+</html>

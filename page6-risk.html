@@ -1,0 +1,1660 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Risk & Action Plan | Upwind Security Due Diligence</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0a0f1a;
+            --bg-secondary: #111827;
+            --bg-card: #1a2234;
+            --bg-elevated: #212b42;
+            --text-primary: #f1f5f9;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+            --border-subtle: rgba(148, 163, 184, 0.12);
+            --border-medium: rgba(148, 163, 184, 0.2);
+            --accent-red: #ef4444;
+            --accent-red-light: #f87171;
+            --accent-red-dim: rgba(239, 68, 68, 0.15);
+            --accent-emerald: #10b981;
+            --accent-emerald-dim: rgba(16, 185, 129, 0.15);
+            --accent-amber: #f59e0b;
+            --accent-amber-dim: rgba(245, 158, 11, 0.15);
+            --accent-blue: #3b82f6;
+            --accent-blue-dim: rgba(59, 130, 246, 0.15);
+            --accent-cyan: #06b6d4;
+            --accent-cyan-dim: rgba(6, 182, 212, 0.15);
+            --accent-violet: #8b5cf6;
+            --accent-violet-dim: rgba(139, 92, 246, 0.15);
+            --gradient-hero: linear-gradient(135deg, #0a0f1a 0%, #450a0a 30%, #0f172a 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(10, 15, 26, 0.85);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-subtle);
+            padding: 0 2rem;
+        }
+
+        .nav-inner {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 64px;
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .nav-logo {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--accent-red) 0%, #dc2626 100%);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Sora', sans-serif;
+            font-weight: 700;
+            font-size: 16px;
+            color: white;
+        }
+
+        .nav-title {
+            font-family: 'Sora', sans-serif;
+            font-weight: 600;
+            font-size: 15px;
+            color: var(--text-primary);
+        }
+
+        .nav-subtitle {
+            font-size: 11px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 4px;
+        }
+
+        .nav-link {
+            padding: 8px 14px;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--text-primary);
+            background: var(--bg-elevated);
+        }
+
+        .nav-link.active {
+            color: var(--accent-red-light);
+            background: var(--accent-red-dim);
+        }
+
+        /* Main Content */
+        .main {
+            padding: 100px 2rem 4rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* Page Header */
+        .page-header {
+            margin-bottom: 2.5rem;
+        }
+
+        .page-header-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--accent-red-dim);
+            color: var(--accent-red);
+            padding: 6px 14px;
+            border-radius: 100px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 1rem;
+        }
+
+        .page-header-badge svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        .page-title {
+            font-family: 'Sora', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .page-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+        }
+
+        /* Section */
+        .section {
+            margin-bottom: 3rem;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 1.5rem;
+        }
+
+        .section-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--accent-red-dim);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent-red);
+        }
+
+        .section-icon svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        .section-icon.amber {
+            background: var(--accent-amber-dim);
+            color: var(--accent-amber);
+        }
+
+        .section-icon.emerald {
+            background: var(--accent-emerald-dim);
+            color: var(--accent-emerald);
+        }
+
+        .section-icon.blue {
+            background: var(--accent-blue-dim);
+            color: var(--accent-blue);
+        }
+
+        .section-title {
+            font-family: 'Sora', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        /* Cards */
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 16px;
+            padding: 1.5rem;
+        }
+
+        /* Hero Risk Summary */
+        .hero-risk {
+            background: var(--gradient-hero);
+            border: 1px solid var(--border-medium);
+            border-radius: 24px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-risk::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, var(--accent-red-dim) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--accent-emerald-dim);
+            color: var(--accent-emerald);
+            padding: 6px 14px;
+            border-radius: 100px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 1rem;
+        }
+
+        .hero-badge::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: var(--accent-emerald);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.4; }
+        }
+
+        .hero-risk-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-risk-title {
+            font-family: 'Sora', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .hero-risk-subtitle {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .confidence-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+        }
+
+        .confidence-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-subtle);
+            border-radius: 16px;
+            padding: 1.25rem;
+        }
+
+        .confidence-area {
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+        }
+
+        .confidence-level {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 13px;
+            font-weight: 600;
+            padding: 4px 10px;
+            border-radius: 6px;
+        }
+
+        .confidence-level.high {
+            background: var(--accent-emerald-dim);
+            color: var(--accent-emerald);
+        }
+
+        .confidence-level.medium {
+            background: var(--accent-amber-dim);
+            color: var(--accent-amber);
+        }
+
+        .confidence-level.low {
+            background: var(--accent-red-dim);
+            color: var(--accent-red);
+        }
+
+        /* Risk Matrix */
+        .risk-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+        }
+
+        .risk-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 16px;
+            padding: 1.25rem;
+        }
+
+        .risk-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 0.75rem;
+        }
+
+        .risk-impact {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            padding: 4px 8px;
+            border-radius: 4px;
+        }
+
+        .risk-impact.high {
+            background: var(--accent-red-dim);
+            color: var(--accent-red);
+        }
+
+        .risk-impact.medium {
+            background: var(--accent-amber-dim);
+            color: var(--accent-amber);
+        }
+
+        .risk-impact.low {
+            background: var(--accent-blue-dim);
+            color: var(--accent-blue);
+        }
+
+        .risk-likelihood {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            color: var(--text-muted);
+        }
+
+        .risk-name {
+            font-family: 'Sora', sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .risk-mitigation {
+            font-size: 13px;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        /* Diligence Questions */
+        .questions-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--bg-card);
+            border-radius: 16px;
+            overflow: hidden;
+        }
+
+        .questions-table th {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            text-align: left;
+            padding: 1rem 1.25rem;
+            background: var(--bg-elevated);
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .questions-table td {
+            padding: 1rem 1.25rem;
+            border-bottom: 1px solid var(--border-subtle);
+            vertical-align: top;
+        }
+
+        .questions-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .question-number {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--accent-red);
+        }
+
+        .question-text {
+            font-weight: 500;
+            color: var(--text-primary);
+            font-size: 14px;
+        }
+
+        .question-target {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 13px;
+            color: var(--accent-emerald);
+        }
+
+        .question-redflag {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 13px;
+            color: var(--accent-red);
+        }
+
+        /* Action Timeline */
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 7px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--border-subtle);
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-bottom: 1.5rem;
+        }
+
+        .timeline-item:last-child {
+            padding-bottom: 0;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: -2rem;
+            top: 4px;
+            width: 16px;
+            height: 16px;
+            background: var(--bg-card);
+            border: 3px solid var(--accent-blue);
+            border-radius: 50%;
+        }
+
+        .timeline-item.critical .timeline-dot {
+            border-color: var(--accent-red);
+            background: var(--accent-red);
+        }
+
+        .timeline-item.success .timeline-dot {
+            border-color: var(--accent-emerald);
+        }
+
+        .timeline-day {
+            display: inline-flex;
+            align-items: center;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            font-weight: 600;
+            padding: 3px 8px;
+            border-radius: 4px;
+            background: var(--accent-blue-dim);
+            color: var(--accent-blue);
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-item.critical .timeline-day {
+            background: var(--accent-red-dim);
+            color: var(--accent-red);
+        }
+
+        .timeline-action {
+            font-family: 'Sora', sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.25rem;
+        }
+
+        .timeline-detail {
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        /* Phase Cards */
+        .phase-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+
+        .phase-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 16px;
+            padding: 1.5rem;
+        }
+
+        .phase-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 1.25rem;
+        }
+
+        .phase-number {
+            width: 36px;
+            height: 36px;
+            background: var(--accent-blue-dim);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Sora', sans-serif;
+            font-weight: 700;
+            font-size: 16px;
+            color: var(--accent-blue);
+        }
+
+        .phase-title {
+            font-family: 'Sora', sans-serif;
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .phase-timeline {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .phase-list {
+            list-style: none;
+        }
+
+        .phase-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin-bottom: 0.75rem;
+            line-height: 1.5;
+        }
+
+        .phase-list li::before {
+            content: '•';
+            color: var(--accent-blue);
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        /* Success Metrics */
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+        }
+
+        .metric-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 16px;
+            padding: 1.25rem;
+        }
+
+        .metric-name {
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+        }
+
+        .metric-targets {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .metric-target {
+            text-align: center;
+        }
+
+        .metric-target-label {
+            font-size: 10px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.25rem;
+        }
+
+        .metric-target-value {
+            font-family: 'Sora', sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--accent-emerald);
+        }
+
+        /* Contrarian View */
+        .contrarian-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 20px;
+            padding: 2rem;
+        }
+
+        .contrarian-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 1.5rem;
+        }
+
+        .contrarian-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--accent-amber-dim);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent-amber);
+        }
+
+        .contrarian-icon svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        .contrarian-title {
+            font-family: 'Sora', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .contrarian-subtitle {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        .contrarian-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .contrarian-section-title {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 1rem;
+        }
+
+        .contrarian-list {
+            list-style: none;
+        }
+
+        .contrarian-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            line-height: 1.5;
+        }
+
+        .contrarian-list.against li::before {
+            content: '✗';
+            color: var(--accent-red);
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+
+        .contrarian-list.for li::before {
+            content: '✓';
+            color: var(--accent-emerald);
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+
+        /* Final Verdict */
+        .final-verdict {
+            background: linear-gradient(135deg, var(--bg-card) 0%, var(--accent-emerald-dim) 100%);
+            border: 2px solid var(--accent-emerald);
+            border-radius: 20px;
+            padding: 2.5rem;
+            text-align: center;
+        }
+
+        .final-verdict-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--accent-emerald-dim);
+            color: var(--accent-emerald);
+            padding: 8px 16px;
+            border-radius: 100px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 1rem;
+        }
+
+        .final-verdict-title {
+            font-family: 'Sora', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .final-verdict-details {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin: 1.5rem 0;
+        }
+
+        .final-verdict-item {
+            text-align: center;
+        }
+
+        .final-verdict-label {
+            font-size: 12px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.25rem;
+        }
+
+        .final-verdict-value {
+            font-family: 'Sora', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent-emerald);
+        }
+
+        .final-verdict-note {
+            color: var(--text-secondary);
+            font-size: 15px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Fallback Table */
+        .fallback-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--bg-card);
+            border-radius: 16px;
+            overflow: hidden;
+        }
+
+        .fallback-table th {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            text-align: left;
+            padding: 1rem 1.25rem;
+            background: var(--bg-elevated);
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .fallback-table td {
+            padding: 1rem 1.25rem;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .fallback-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .scenario-name {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .scenario-action {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        /* Reference Checks */
+        .reference-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+        }
+
+        .reference-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 16px;
+            padding: 1.25rem;
+        }
+
+        .reference-type {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            color: var(--accent-cyan);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.5rem;
+        }
+
+        .reference-count {
+            font-family: 'Sora', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .reference-questions {
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        /* Two Column */
+        .two-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .confidence-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .risk-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .phase-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .metrics-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .reference-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .two-col {
+                grid-template-columns: 1fr;
+            }
+
+            .contrarian-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .main {
+                padding: 80px 1rem 2rem;
+            }
+
+            .page-title {
+                font-size: 1.75rem;
+            }
+
+            .hero-risk {
+                padding: 1.5rem;
+            }
+
+            .confidence-grid,
+            .risk-grid,
+            .metrics-grid,
+            .reference-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .final-verdict-details {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <div class="nav-inner">
+            <div class="nav-brand">
+                <div class="nav-logo">U</div>
+                <div>
+                    <div class="nav-title">Upwind Security</div>
+                    <div class="nav-subtitle">Due Diligence Report</div>
+                </div>
+            </div>
+            <div class="nav-links">
+                <a href="page1-verdict.html" class="nav-link">Verdict</a>
+                <a href="page2-company.html" class="nav-link">Company</a>
+                <a href="page3-product.html" class="nav-link">Product</a>
+                <a href="page4-market.html" class="nav-link">Market</a>
+                <a href="page5-financials.html" class="nav-link">Financials</a>
+                <a href="page6-risk.html" class="nav-link active">Risk & Action</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="main">
+        <!-- Page Header -->
+        <header class="page-header">
+            <div class="page-header-badge">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+                </svg>
+                Risk Assessment
+            </div>
+            <h1 class="page-title">Risk & Action Plan</h1>
+            <p class="page-subtitle">Risk matrix, diligence questions, and execution roadmap</p>
+        </header>
+
+        <!-- Hero Risk Summary -->
+        <section class="hero-risk">
+            <div class="hero-risk-content">
+                <div class="hero-badge">Recommendation Holds</div>
+                <h2 class="hero-risk-title">Conditional Proceed — Confidence: 75-78%</h2>
+                <p class="hero-risk-subtitle">Risks are manageable. Opportunity is substantial. Gate is Datadog.</p>
+
+                <div class="confidence-grid">
+                    <div class="confidence-card">
+                        <div class="confidence-area">Team Quality</div>
+                        <div class="confidence-level high">🟢 HIGH</div>
+                    </div>
+                    <div class="confidence-card">
+                        <div class="confidence-area">Technology</div>
+                        <div class="confidence-level high">🟢 HIGH</div>
+                    </div>
+                    <div class="confidence-card">
+                        <div class="confidence-area">Market Opportunity</div>
+                        <div class="confidence-level high">🟢 HIGH</div>
+                    </div>
+                    <div class="confidence-card">
+                        <div class="confidence-area">Product-Market Fit</div>
+                        <div class="confidence-level high">🟢 HIGH</div>
+                    </div>
+                    <div class="confidence-card">
+                        <div class="confidence-area">Growth Trajectory</div>
+                        <div class="confidence-level medium">🟡 MEDIUM</div>
+                    </div>
+                    <div class="confidence-card">
+                        <div class="confidence-area">Financial Metrics</div>
+                        <div class="confidence-level low">🟠 LOW</div>
+                    </div>
+                    <div class="confidence-card">
+                        <div class="confidence-area">Sales Execution</div>
+                        <div class="confidence-level medium">🟡 MEDIUM</div>
+                    </div>
+                    <div class="confidence-card">
+                        <div class="confidence-area">Investment Availability</div>
+                        <div class="confidence-level medium">🟡 MEDIUM</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- High-Impact Risks -->
+        <section class="section">
+            <div class="section-header">
+                <div class="section-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+                    </svg>
+                </div>
+                <h2 class="section-title">High-Impact Risks</h2>
+            </div>
+
+            <div class="risk-grid">
+                <div class="risk-card">
+                    <div class="risk-header">
+                        <div class="risk-impact high">CRITICAL</div>
+                        <div class="risk-likelihood">55-60% likely</div>
+                    </div>
+                    <div class="risk-name">Datadog acquisition closes</div>
+                    <div class="risk-mitigation">Blocks investment entirely. Mitigation: Confirm status Week 1 before any diligence spend.</div>
+                </div>
+                <div class="risk-card">
+                    <div class="risk-header">
+                        <div class="risk-impact high">HIGH</div>
+                        <div class="risk-likelihood">40% likely</div>
+                    </div>
+                    <div class="risk-name">Wiz closes runtime gap</div>
+                    <div class="risk-mitigation">Differentiation erodes. Mitigation: 18-24 month architecture lead; integrated > assembled.</div>
+                </div>
+                <div class="risk-card">
+                    <div class="risk-header">
+                        <div class="risk-impact high">HIGH</div>
+                        <div class="risk-likelihood">30% likely</div>
+                    </div>
+                    <div class="risk-name">Market consolidates to duopoly</div>
+                    <div class="risk-mitigation">#3+ players squeezed out. Mitigation: Runtime differentiation sustains position.</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Medium-Impact Risks -->
+        <section class="section">
+            <div class="section-header">
+                <div class="section-icon amber">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"/>
+                        <line x1="12" y1="8" x2="12" y2="12"/>
+                        <line x1="12" y1="16" x2="12.01" y2="16"/>
+                    </svg>
+                </div>
+                <h2 class="section-title">Medium-Impact Risks</h2>
+            </div>
+
+            <div class="risk-grid">
+                <div class="risk-card">
+                    <div class="risk-header">
+                        <div class="risk-impact medium">MEDIUM</div>
+                        <div class="risk-likelihood">35% likely</div>
+                    </div>
+                    <div class="risk-name">Valuation compression</div>
+                    <div class="risk-mitigation">Limited upside if multiple compresses. Mitigation: Entry at reasonable 17x provides cushion.</div>
+                </div>
+                <div class="risk-card">
+                    <div class="risk-header">
+                        <div class="risk-impact medium">MEDIUM</div>
+                        <div class="risk-likelihood">35% likely</div>
+                    </div>
+                    <div class="risk-name">Sales org dysfunction</div>
+                    <div class="risk-mitigation">RepVue 2.7/5 rating concerning. Mitigation: Reference calls required; investigate GTM pedigree.</div>
+                </div>
+                <div class="risk-card">
+                    <div class="risk-header">
+                        <div class="risk-impact medium">MEDIUM</div>
+                        <div class="risk-likelihood">70% likely</div>
+                    </div>
+                    <div class="risk-name">ISO 27001 delay</div>
+                    <div class="risk-mitigation">15-20% of RFPs blocked. Mitigation: Negotiate timeline commitment in term sheet.</div>
+                </div>
+                <div class="risk-card">
+                    <div class="risk-header">
+                        <div class="risk-impact medium">MEDIUM</div>
+                        <div class="risk-likelihood">60% likely</div>
+                    </div>
+                    <div class="risk-name">FedRAMP delay</div>
+                    <div class="risk-mitigation">Federal TAM locked. Mitigation: Monitor progress; not a dealbreaker.</div>
+                </div>
+                <div class="risk-card">
+                    <div class="risk-header">
+                        <div class="risk-impact medium">MEDIUM</div>
+                        <div class="risk-likelihood">Unknown</div>
+                    </div>
+                    <div class="risk-name">Customer concentration</div>
+                    <div class="risk-mitigation">Revenue risk if top customer churns. Mitigation: Verify under NDA; require <20% top 3.</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Risks of NOT Investing -->
+        <section class="section">
+            <div class="section-header">
+                <div class="section-icon emerald">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                </div>
+                <h2 class="section-title">Risks of NOT Investing</h2>
+            </div>
+
+            <div class="risk-grid">
+                <div class="risk-card">
+                    <div class="risk-header">
+                        <div class="risk-impact high">HIGH</div>
+                        <div class="risk-likelihood">30% likely</div>
+                    </div>
+                    <div class="risk-name">Miss category winner</div>
+                    <div class="risk-mitigation">10-35x return foregone if Upwind becomes the next major CNAPP success story.</div>
+                </div>
+                <div class="risk-card">
+                    <div class="risk-header">
+                        <div class="risk-impact high">HIGH</div>
+                        <div class="risk-likelihood">40% likely</div>
+                    </div>
+                    <div class="risk-name">Competitor secures exclusive</div>
+                    <div class="risk-mitigation">Locked out of CNAPP portfolio. Another VC fund takes the allocation.</div>
+                </div>
+                <div class="risk-card">
+                    <div class="risk-header">
+                        <div class="risk-impact medium">MEDIUM</div>
+                        <div class="risk-likelihood">100%</div>
+                    </div>
+                    <div class="risk-name">Founder relationship lost</div>
+                    <div class="risk-mitigation">Their next company goes elsewhere. Team has $450M exit track record.</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Diligence Questions -->
+        <section class="section">
+            <div class="section-header">
+                <div class="section-icon blue">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"/>
+                        <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+                        <line x1="12" y1="17" x2="12.01" y2="17"/>
+                    </svg>
+                </div>
+                <h2 class="section-title">Deal-Breaker Questions</h2>
+            </div>
+
+            <table class="questions-table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Question</th>
+                        <th>Target Answer</th>
+                        <th>Red Flag</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="question-number">1</td>
+                        <td class="question-text">"What is your current ARR and ARR 12 months ago?"</td>
+                        <td class="question-target">$45-60M current; >100% growth</td>
+                        <td class="question-redflag"><$40M or <50% growth</td>
+                    </tr>
+                    <tr>
+                        <td class="question-number">2</td>
+                        <td class="question-text">"What is your net revenue retention by segment?"</td>
+                        <td class="question-target">>110% overall; >120% enterprise</td>
+                        <td class="question-redflag"><100% (net churn)</td>
+                    </tr>
+                    <tr>
+                        <td class="question-number">3</td>
+                        <td class="question-text">"What % of ARR from top 3 and top 10 customers?"</td>
+                        <td class="question-target">Top 3 <20%; Top 10 <40%</td>
+                        <td class="question-redflag">Single customer >15%</td>
+                    </tr>
+                    <tr>
+                        <td class="question-number">4</td>
+                        <td class="question-text">"What is the status of Datadog acquisition discussions?"</td>
+                        <td class="question-target">Dormant/dead</td>
+                        <td class="question-redflag">Active negotiation</td>
+                    </tr>
+                    <tr>
+                        <td class="question-number">5</td>
+                        <td class="question-text">"How does runtime detection compare to Wiz Defend?"</td>
+                        <td class="question-target">Clear technical differentiation</td>
+                        <td class="question-redflag">"We're comparable"</td>
+                    </tr>
+                    <tr>
+                        <td class="question-number">6</td>
+                        <td class="question-text">"What's your win rate against Wiz head-to-head?"</td>
+                        <td class="question-target">>25%</td>
+                        <td class="question-redflag"><15%</td>
+                    </tr>
+                    <tr>
+                        <td class="question-number">7</td>
+                        <td class="question-text">"What's CAC payback and gross margin?"</td>
+                        <td class="question-target">CAC <18 months; GM >70%</td>
+                        <td class="question-redflag">CAC >24 months; GM <60%</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Reference Check Priorities -->
+        <section class="section">
+            <div class="section-header">
+                <div class="section-icon blue">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+                        <circle cx="9" cy="7" r="4"/>
+                        <path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>
+                    </svg>
+                </div>
+                <h2 class="section-title">Reference Check Priorities</h2>
+            </div>
+
+            <div class="reference-grid">
+                <div class="reference-card">
+                    <div class="reference-type">Enterprise Customers</div>
+                    <div class="reference-count">2-3 calls</div>
+                    <div class="reference-questions">Competitive evals; Wiz comparison; runtime value</div>
+                </div>
+                <div class="reference-card">
+                    <div class="reference-type">Churned Customer</div>
+                    <div class="reference-count">1 call</div>
+                    <div class="reference-questions">Why they left; what would bring them back</div>
+                </div>
+                <div class="reference-card">
+                    <div class="reference-type">Sales Team Members</div>
+                    <div class="reference-count">1-2 calls</div>
+                    <div class="reference-questions">Culture; leadership; quota attainment</div>
+                </div>
+                <div class="reference-card">
+                    <div class="reference-type">Competitive Vendor</div>
+                    <div class="reference-count">1 call</div>
+                    <div class="reference-questions">Market positioning; differentiation assessment</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Action Timeline -->
+        <section class="section">
+            <div class="section-header">
+                <div class="section-icon emerald">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                        <line x1="16" y1="2" x2="16" y2="6"/>
+                        <line x1="8" y1="2" x2="8" y2="6"/>
+                        <line x1="3" y1="10" x2="21" y2="10"/>
+                    </svg>
+                </div>
+                <h2 class="section-title">Week 1 Action Timeline</h2>
+            </div>
+
+            <div class="card">
+                <div class="timeline">
+                    <div class="timeline-item critical">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-day">Day 1</div>
+                        <div class="timeline-action">Confirm Datadog status via board network</div>
+                        <div class="timeline-detail">Contact Saam Motamedi at Greylock → Deal status memo</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-day">Day 1</div>
+                        <div class="timeline-action">Request data room access under NDA</div>
+                        <div class="timeline-detail">Frame around Salesforce strategic partnership potential</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-day">Day 2</div>
+                        <div class="timeline-action">Schedule CEO call with Amiram Shachar</div>
+                        <div class="timeline-detail">Confirm meeting; prepare ARR, NRR, competitive questions</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-day">Day 2</div>
+                        <div class="timeline-action">Brief Salesforce M&A on opportunity</div>
+                        <div class="timeline-detail">Internal alignment; portfolio team informed</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-day">Day 3</div>
+                        <div class="timeline-action">Engage financial DD team</div>
+                        <div class="timeline-detail">Launch workstream; prepare for data room access</div>
+                    </div>
+                    <div class="timeline-item critical">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-day">Day 5</div>
+                        <div class="timeline-action">CEO call: Clarify Datadog status directly</div>
+                        <div class="timeline-detail">ARR, NRR, competitive win rates discussed → Definitive answer</div>
+                    </div>
+                    <div class="timeline-item success">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-day">Day 7</div>
+                        <div class="timeline-action">Path determination: A, B, or C</div>
+                        <div class="timeline-detail">Decision point: Datadog status determines investment path</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 30-60-90 Day Plan -->
+        <section class="section">
+            <div class="section-header">
+                <div class="section-icon blue">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                        <polyline points="22 4 12 14.01 9 11.01"/>
+                    </svg>
+                </div>
+                <h2 class="section-title">30-60-90 Day Plan</h2>
+            </div>
+
+            <div class="phase-grid">
+                <div class="phase-card">
+                    <div class="phase-header">
+                        <div class="phase-number">1</div>
+                        <div>
+                            <div class="phase-title">Deep Diligence</div>
+                            <div class="phase-timeline">Days 1-30</div>
+                        </div>
+                    </div>
+                    <ul class="phase-list">
+                        <li>ARR verification ($45-60M target)</li>
+                        <li>Net revenue retention (>110% target)</li>
+                        <li>Gross margin (>70% target)</li>
+                        <li>CAC payback (<18 months target)</li>
+                        <li>5-7 customer reference calls</li>
+                        <li>CTO architecture review</li>
+                        <li>Sales org health assessment</li>
+                    </ul>
+                </div>
+                <div class="phase-card">
+                    <div class="phase-header">
+                        <div class="phase-number">2</div>
+                        <div>
+                            <div class="phase-title">Term Negotiation</div>
+                            <div class="phase-timeline">Days 30-60</div>
+                        </div>
+                    </div>
+                    <ul class="phase-list">
+                        <li>Term sheet delivery</li>
+                        <li>Negotiate board/observer rights</li>
+                        <li>Salesforce integration commitment</li>
+                        <li>Information rights and pro-rata</li>
+                        <li>ISO 27001 timeline commitment</li>
+                        <li>Legal documentation drafting</li>
+                    </ul>
+                </div>
+                <div class="phase-card">
+                    <div class="phase-header">
+                        <div class="phase-number">3</div>
+                        <div>
+                            <div class="phase-title">Close</div>
+                            <div class="phase-timeline">Days 60-90</div>
+                        </div>
+                    </div>
+                    <ul class="phase-list">
+                        <li>Final legal documentation</li>
+                        <li>Investment committee approval</li>
+                        <li>Board approval</li>
+                        <li>Wire funds</li>
+                        <li>Public announcement</li>
+                        <li>Integration kickoff</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Success Metrics -->
+        <section class="section">
+            <div class="section-header">
+                <div class="section-icon emerald">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/>
+                        <polyline points="16 7 22 7 22 13"/>
+                    </svg>
+                </div>
+                <h2 class="section-title">Success Metrics (Post-Investment)</h2>
+            </div>
+
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="metric-name">ARR</div>
+                    <div class="metric-targets">
+                        <div class="metric-target">
+                            <div class="metric-target-label">12-Month</div>
+                            <div class="metric-target-value">$80-100M</div>
+                        </div>
+                        <div class="metric-target">
+                            <div class="metric-target-label">24-Month</div>
+                            <div class="metric-target-value">$150-200M</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-name">ARR Growth</div>
+                    <div class="metric-targets">
+                        <div class="metric-target">
+                            <div class="metric-target-label">12-Month</div>
+                            <div class="metric-target-value">>80% YoY</div>
+                        </div>
+                        <div class="metric-target">
+                            <div class="metric-target-label">24-Month</div>
+                            <div class="metric-target-value">>60% YoY</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-name">NRR</div>
+                    <div class="metric-targets">
+                        <div class="metric-target">
+                            <div class="metric-target-label">12-Month</div>
+                            <div class="metric-target-value">>120%</div>
+                        </div>
+                        <div class="metric-target">
+                            <div class="metric-target-label">24-Month</div>
+                            <div class="metric-target-value">>125%</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-name">Customer Count</div>
+                    <div class="metric-targets">
+                        <div class="metric-target">
+                            <div class="metric-target-label">12-Month</div>
+                            <div class="metric-target-value">300+</div>
+                        </div>
+                        <div class="metric-target">
+                            <div class="metric-target-label">24-Month</div>
+                            <div class="metric-target-value">500+</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-name">Fortune 500 Logos</div>
+                    <div class="metric-targets">
+                        <div class="metric-target">
+                            <div class="metric-target-label">12-Month</div>
+                            <div class="metric-target-value">+15-25 new</div>
+                        </div>
+                        <div class="metric-target">
+                            <div class="metric-target-label">24-Month</div>
+                            <div class="metric-target-value">40 total</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-name">ISO 27001</div>
+                    <div class="metric-targets">
+                        <div class="metric-target">
+                            <div class="metric-target-label">12-Month</div>
+                            <div class="metric-target-value">Achieved</div>
+                        </div>
+                        <div class="metric-target">
+                            <div class="metric-target-label">24-Month</div>
+                            <div class="metric-target-value">Maintained</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-name">FedRAMP</div>
+                    <div class="metric-targets">
+                        <div class="metric-target">
+                            <div class="metric-target-label">12-Month</div>
+                            <div class="metric-target-value">Achieved</div>
+                        </div>
+                        <div class="metric-target">
+                            <div class="metric-target-label">24-Month</div>
+                            <div class="metric-target-value">Fed customers</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-name">Valuation</div>
+                    <div class="metric-targets">
+                        <div class="metric-target">
+                            <div class="metric-target-label">12-Month</div>
+                            <div class="metric-target-value">$1.5-2B</div>
+                        </div>
+                        <div class="metric-target">
+                            <div class="metric-target-label">24-Month</div>
+                            <div class="metric-target-value">$3-5B</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contrarian View -->
+        <section class="section">
+            <div class="section-header">
+                <div class="section-icon amber">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/>
+                    </svg>
+                </div>
+                <h2 class="section-title">The Contrarian View</h2>
+            </div>
+
+            <div class="contrarian-card">
+                <div class="contrarian-header">
+                    <div class="contrarian-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/>
+                            <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+                            <line x1="12" y1="17" x2="12.01" y2="17"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <div class="contrarian-title">Steel-Manning the "No" Case</div>
+                        <div class="contrarian-subtitle">Arguments against investment vs. our response</div>
+                    </div>
+                </div>
+
+                <div class="contrarian-grid">
+                    <div>
+                        <div class="contrarian-section-title">The Case Against</div>
+                        <ul class="contrarian-list against">
+                            <li>"Wiz has already won" — 21.6% mindshare, $700M ARR, now backed by Google</li>
+                            <li>"Runtime is a feature, not a platform" — Wiz/Orca added eBPF in 2024</li>
+                            <li>"$900M is aggressive for this stage" — Multiple compression risk if growth slows</li>
+                            <li>"Sales execution concerns" — RepVue 2.7/5 with aggressive GTM hiring</li>
+                            <li>"Missing enterprise certifications" — ISO 27001, HIPAA gaps block deals</li>
+                            <li>"Returns require a very large exit" — Need $5B+ for meaningful returns</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <div class="contrarian-section-title">Why Recommendation Holds</div>
+                        <ul class="contrarian-list for">
+                            <li>Market has room for 3+ winners (Gartner view). Upwind positioned for #2-3.</li>
+                            <li>Market shifting to detection/response. Architecture matters—integrated > assembled.</li>
+                            <li>4,000% growth and logo quality justify multiple. Cheaper than every comparable.</li>
+                            <li>Addressable with reference calls. GTM hires have strong PANW pedigree.</li>
+                            <li>Execution items, not fundamental barriers. 6-12 month fixes.</li>
+                            <li>Multiple paths to 5x+ return. Even base case is above threshold.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Fallback Plan -->
+        <section class="section">
+            <div class="section-header">
+                <div class="section-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M9 14l-4 4 4 4"/>
+                        <path d="M5 18h7a4 4 0 0 0 0-8h-1"/>
+                    </svg>
+                </div>
+                <h2 class="section-title">Fallback Plan</h2>
+            </div>
+
+            <table class="fallback-table">
+                <thead>
+                    <tr>
+                        <th>Scenario</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="scenario-name">Datadog acquisition closes</td>
+                        <td class="scenario-action">Maintain founder relationship; track for next company</td>
+                    </tr>
+                    <tr>
+                        <td class="scenario-name">Terms uneconomic (>$2B pre-money)</td>
+                        <td class="scenario-action">Walk away; monitor Series C</td>
+                    </tr>
+                    <tr>
+                        <td class="scenario-name">Due diligence fails</td>
+                        <td class="scenario-action">Document learnings; maintain relationship</td>
+                    </tr>
+                    <tr>
+                        <td class="scenario-name">Sales references reveal issues</td>
+                        <td class="scenario-action">Pass; require remediation before re-engaging</td>
+                    </tr>
+                    <tr>
+                        <td class="scenario-name">Salesforce integration declined</td>
+                        <td class="scenario-action">Pass; strategic fit insufficient</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Final Verdict -->
+        <section class="section">
+            <div class="final-verdict">
+                <div class="final-verdict-badge">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="20 6 9 17 4 12"/>
+                    </svg>
+                    Final Verdict
+                </div>
+                <h2 class="final-verdict-title">Conditional Proceed</h2>
+                <div class="final-verdict-details">
+                    <div class="final-verdict-item">
+                        <div class="final-verdict-label">Investment</div>
+                        <div class="final-verdict-value">$50-75M</div>
+                    </div>
+                    <div class="final-verdict-item">
+                        <div class="final-verdict-label">Ownership</div>
+                        <div class="final-verdict-value">8-12%</div>
+                    </div>
+                    <div class="final-verdict-item">
+                        <div class="final-verdict-label">Expected Return</div>
+                        <div class="final-verdict-value">8.3x</div>
+                    </div>
+                    <div class="final-verdict-item">
+                        <div class="final-verdict-label">Confidence</div>
+                        <div class="final-verdict-value">75-78%</div>
+                    </div>
+                </div>
+                <p class="final-verdict-note">Email Greylock today. Reach out to Amiram Shachar. Frame around Salesforce strategic partnership. If Path B opens, move fast. This is a competitive round with a compelling asset.</p>
+            </div>
+        </section>
+    </main>
+</body>
+</html>

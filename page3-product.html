@@ -1,0 +1,1285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product & Technology | Upwind Security Due Diligence</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0a0f1a;
+            --bg-secondary: #111827;
+            --bg-card: #1a2234;
+            --bg-elevated: #212b42;
+            --text-primary: #f1f5f9;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+            --border-subtle: rgba(148, 163, 184, 0.12);
+            --border-medium: rgba(148, 163, 184, 0.2);
+            --accent-emerald: #10b981;
+            --accent-emerald-light: #34d399;
+            --accent-emerald-dim: rgba(16, 185, 129, 0.15);
+            --accent-blue: #3b82f6;
+            --accent-blue-dim: rgba(59, 130, 246, 0.15);
+            --accent-violet: #8b5cf6;
+            --accent-violet-dim: rgba(139, 92, 246, 0.15);
+            --accent-amber: #f59e0b;
+            --accent-amber-dim: rgba(245, 158, 11, 0.15);
+            --accent-red: #ef4444;
+            --accent-red-dim: rgba(239, 68, 68, 0.15);
+            --accent-cyan: #06b6d4;
+            --accent-cyan-dim: rgba(6, 182, 212, 0.15);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(10, 15, 26, 0.85);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-subtle);
+            padding: 0 2rem;
+        }
+
+        .nav-inner {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 64px;
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .nav-logo {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--accent-blue) 0%, var(--accent-violet) 100%);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Sora', sans-serif;
+            font-weight: 700;
+            font-size: 16px;
+            color: white;
+        }
+
+        .nav-title {
+            font-family: 'Sora', sans-serif;
+            font-weight: 600;
+            font-size: 15px;
+            color: var(--text-primary);
+        }
+
+        .nav-subtitle {
+            font-size: 11px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 4px;
+        }
+
+        .nav-link {
+            padding: 8px 14px;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--text-primary);
+            background: var(--bg-elevated);
+        }
+
+        .nav-link.active {
+            color: var(--accent-emerald-light);
+            background: var(--accent-emerald-dim);
+        }
+
+        /* Main Content */
+        .main {
+            padding: 100px 2rem 4rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* Page Header */
+        .page-header {
+            margin-bottom: 2.5rem;
+        }
+
+        .page-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--accent-emerald-dim);
+            color: var(--accent-emerald-light);
+            padding: 6px 14px;
+            border-radius: 100px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 1rem;
+        }
+
+        .page-title {
+            font-family: 'Sora', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .page-desc {
+            font-size: 15px;
+            color: var(--text-secondary);
+            max-width: 700px;
+        }
+
+        /* Section */
+        .section {
+            margin-bottom: 2.5rem;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 1.5rem;
+        }
+
+        .section-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--accent-emerald-dim);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent-emerald);
+        }
+
+        .section-title {
+            font-family: 'Sora', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+
+        /* The Key Insight */
+        .insight-card {
+            background: linear-gradient(135deg, var(--accent-emerald-dim) 0%, var(--bg-card) 100%);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            border-radius: 24px;
+            padding: 2.5rem;
+            margin-bottom: 2.5rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .insight-side {
+            padding: 1.5rem;
+            background: var(--bg-elevated);
+            border-radius: 16px;
+        }
+
+        .insight-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1rem;
+        }
+
+        .insight-label.old { color: var(--text-muted); }
+        .insight-label.new { color: var(--accent-emerald); }
+
+        .insight-title {
+            font-family: 'Sora', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+
+        .insight-desc {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+
+        .insight-result {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 14px;
+            padding: 10px 16px;
+            background: var(--bg-primary);
+            border-radius: 8px;
+        }
+
+        .insight-result.bad { color: var(--accent-red); }
+        .insight-result.good { color: var(--accent-emerald); }
+
+        /* Architecture Diagram */
+        .arch-container {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .arch-layers {
+            display: grid;
+            grid-template-columns: 1fr 80px 1fr;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        .arch-layer {
+            background: var(--bg-elevated);
+            border-radius: 16px;
+            padding: 1.5rem;
+        }
+
+        .arch-layer-title {
+            font-family: 'Sora', sans-serif;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .arch-layer-badge {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10px;
+            font-weight: 600;
+            text-transform: uppercase;
+            padding: 2px 8px;
+            border-radius: 4px;
+        }
+
+        .arch-layer-badge.breadth {
+            background: var(--accent-blue-dim);
+            color: var(--accent-blue);
+        }
+
+        .arch-layer-badge.depth {
+            background: var(--accent-emerald-dim);
+            color: var(--accent-emerald);
+        }
+
+        .arch-layer-desc {
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+
+        .arch-layer-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .arch-feature {
+            font-size: 11px;
+            padding: 4px 10px;
+            background: var(--bg-primary);
+            border-radius: 6px;
+            color: var(--text-secondary);
+        }
+
+        .arch-arrow {
+            text-align: center;
+            color: var(--accent-emerald);
+            font-size: 24px;
+        }
+
+        .arch-center {
+            background: linear-gradient(135deg, var(--accent-emerald-dim) 0%, var(--accent-cyan-dim) 100%);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            border-radius: 16px;
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .arch-center-title {
+            font-family: 'Sora', sans-serif;
+            font-weight: 700;
+            color: var(--accent-emerald);
+            margin-bottom: 0.5rem;
+        }
+
+        .arch-center-desc {
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+
+        .arch-center-badge {
+            display: inline-block;
+            margin-top: 0.75rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10px;
+            font-weight: 600;
+            text-transform: uppercase;
+            padding: 4px 10px;
+            background: var(--accent-emerald-dim);
+            color: var(--accent-emerald);
+            border-radius: 6px;
+        }
+
+        /* Platform Modules */
+        .modules-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+        }
+
+        .module-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 16px;
+            padding: 1.25rem;
+        }
+
+        .module-card.core {
+            border-color: var(--accent-emerald);
+            background: linear-gradient(to bottom, var(--accent-emerald-dim), var(--bg-card));
+        }
+
+        .module-abbr {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-muted);
+            margin-bottom: 0.25rem;
+        }
+
+        .module-card.core .module-abbr {
+            color: var(--accent-emerald);
+        }
+
+        .module-name {
+            font-family: 'Sora', sans-serif;
+            font-weight: 600;
+            font-size: 14px;
+            margin-bottom: 0.5rem;
+        }
+
+        .module-status {
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+
+        .module-badge {
+            display: inline-block;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10px;
+            font-weight: 600;
+            text-transform: uppercase;
+            padding: 2px 8px;
+            border-radius: 4px;
+            margin-top: 0.5rem;
+        }
+
+        .module-badge.core {
+            background: var(--accent-emerald-dim);
+            color: var(--accent-emerald);
+        }
+
+        .module-badge.new {
+            background: var(--accent-blue-dim);
+            color: var(--accent-blue);
+        }
+
+        .module-badge.partial {
+            background: var(--accent-amber-dim);
+            color: var(--accent-amber);
+        }
+
+        /* Defensibility */
+        .defense-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+
+        .defense-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 20px;
+            padding: 1.75rem;
+        }
+
+        .defense-header {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+        }
+
+        .defense-title {
+            font-family: 'Sora', sans-serif;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .defense-level {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            padding: 4px 10px;
+            border-radius: 6px;
+        }
+
+        .defense-level.high {
+            background: var(--accent-emerald-dim);
+            color: var(--accent-emerald);
+        }
+
+        .defense-level.medium {
+            background: var(--accent-amber-dim);
+            color: var(--accent-amber);
+        }
+
+        .defense-desc {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .defense-lead {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border-subtle);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 13px;
+            color: var(--accent-emerald);
+        }
+
+        /* Customer Outcomes */
+        .outcomes-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+
+        .outcome-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 20px;
+            padding: 1.75rem;
+        }
+
+        .outcome-customer {
+            font-family: 'Sora', sans-serif;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .outcome-metric {
+            font-family: 'Sora', sans-serif;
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--accent-emerald);
+            margin-bottom: 0.25rem;
+        }
+
+        .outcome-label {
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin-bottom: 0.75rem;
+        }
+
+        .outcome-proof {
+            font-size: 13px;
+            color: var(--text-muted);
+            padding-top: 0.75rem;
+            border-top: 1px solid var(--border-subtle);
+        }
+
+        /* Gartner Rating */
+        .ratings-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .ratings-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1.5rem;
+        }
+
+        .ratings-title {
+            font-family: 'Sora', sans-serif;
+            font-weight: 600;
+        }
+
+        .ratings-badge {
+            background: var(--accent-emerald-dim);
+            color: var(--accent-emerald);
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .ratings-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+        }
+
+        .rating-card {
+            text-align: center;
+            padding: 1.25rem;
+            background: var(--bg-elevated);
+            border-radius: 12px;
+        }
+
+        .rating-company {
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .rating-score {
+            font-family: 'Sora', sans-serif;
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+
+        .rating-score.leader { color: var(--accent-emerald); }
+        .rating-score.good { color: var(--accent-blue); }
+        .rating-score.avg { color: var(--text-secondary); }
+
+        .rating-reviews {
+            font-size: 11px;
+            color: var(--text-muted);
+        }
+
+        .rating-star {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .rating-star.highlight {
+            color: var(--accent-emerald);
+        }
+
+        /* Certifications */
+        .certs-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 1rem;
+        }
+
+        .cert-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 16px;
+            padding: 1.25rem;
+            text-align: center;
+        }
+
+        .cert-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 0.75rem;
+            font-size: 20px;
+        }
+
+        .cert-icon.achieved {
+            background: var(--accent-emerald-dim);
+            color: var(--accent-emerald);
+        }
+
+        .cert-icon.missing {
+            background: var(--accent-red-dim);
+            color: var(--accent-red);
+        }
+
+        .cert-icon.progress {
+            background: var(--accent-amber-dim);
+            color: var(--accent-amber);
+        }
+
+        .cert-name {
+            font-weight: 600;
+            font-size: 14px;
+            margin-bottom: 0.25rem;
+        }
+
+        .cert-status {
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+
+        .cert-impact {
+            font-size: 11px;
+            color: var(--text-muted);
+            margin-top: 0.5rem;
+        }
+
+        .cert-impact.concern {
+            color: var(--accent-red);
+        }
+
+        /* Logo Customers */
+        .logos-container {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 20px;
+            padding: 2rem;
+        }
+
+        .logos-section {
+            margin-bottom: 1.5rem;
+        }
+
+        .logos-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .logos-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--text-muted);
+            margin-bottom: 0.75rem;
+        }
+
+        .logos-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+
+        .logo-badge {
+            background: var(--bg-elevated);
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        .logo-badge.public {
+            background: var(--accent-emerald-dim);
+            color: var(--accent-emerald);
+        }
+
+        /* Technology Gaps */
+        .gaps-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+        }
+
+        .gap-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 16px;
+            padding: 1.25rem;
+        }
+
+        .gap-title {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--accent-amber);
+        }
+
+        .gap-desc {
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+        }
+
+        .gap-timeline {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            color: var(--text-muted);
+        }
+
+        /* Footer Navigation */
+        .footer-nav {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-subtle);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-link {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 20px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 12px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+
+        .footer-link:hover {
+            border-color: var(--accent-emerald);
+            color: var(--text-primary);
+        }
+
+        .footer-link.next {
+            background: var(--accent-emerald-dim);
+            border-color: var(--accent-emerald);
+            color: var(--accent-emerald-light);
+        }
+
+        .footer-meta {
+            text-align: center;
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .insight-card { grid-template-columns: 1fr; }
+            .modules-grid { grid-template-columns: repeat(2, 1fr); }
+            .defense-grid { grid-template-columns: 1fr; }
+            .outcomes-grid { grid-template-columns: 1fr; }
+            .ratings-grid { grid-template-columns: repeat(2, 1fr); }
+            .certs-grid { grid-template-columns: repeat(3, 1fr); }
+            .arch-layers { grid-template-columns: 1fr; }
+            .arch-arrow { transform: rotate(90deg); }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .main { padding: 80px 1rem 2rem; }
+            .modules-grid { grid-template-columns: 1fr; }
+            .certs-grid { grid-template-columns: 1fr 1fr; }
+            .gaps-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <div class="nav-inner">
+            <div class="nav-brand">
+                <div class="nav-logo">U</div>
+                <div>
+                    <div class="nav-title">Upwind Security</div>
+                    <div class="nav-subtitle">Investment Due Diligence • Dec 2025</div>
+                </div>
+            </div>
+            <div class="nav-links">
+                <a href="page1-verdict.html" class="nav-link">Verdict</a>
+                <a href="page2-company.html" class="nav-link">Company</a>
+                <a href="page3-product.html" class="nav-link active">Product</a>
+                <a href="page4-market.html" class="nav-link">Market</a>
+                <a href="page5-financials.html" class="nav-link">Financials</a>
+                <a href="page6-risk.html" class="nav-link">Risk & Action</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="main">
+        <!-- Page Header -->
+        <div class="page-header">
+            <div class="page-badge">03 — Product & Technology</div>
+            <h1 class="page-title">Runtime-First Architecture</h1>
+            <p class="page-desc">The difference between flagging what could be a problem and showing what is a problem right now. 90-98% alert reduction isn't incremental—it transforms how security operations work.</p>
+        </div>
+
+        <!-- The Key Insight -->
+        <div class="insight-card">
+            <div class="insight-side">
+                <div class="insight-label old">Traditional Approach (Wiz, Orca pre-2024)</div>
+                <div class="insight-title">Take a photograph of your infrastructure</div>
+                <div class="insight-desc">Scan configurations and flag everything that <em>could</em> be a problem. Static analysis identifies theoretical vulnerabilities.</div>
+                <div class="insight-result bad">
+                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+                    </svg>
+                    Result: 10,000+ "Critical" alerts
+                </div>
+            </div>
+            <div class="insight-side" style="background: linear-gradient(135deg, var(--accent-emerald-dim), var(--bg-elevated));">
+                <div class="insight-label new">Upwind Approach</div>
+                <div class="insight-title">Put sensors inside your infrastructure</div>
+                <div class="insight-desc">Watch actual execution and show what <em>is</em> a problem right now. Runtime analysis identifies real threats.</div>
+                <div class="insight-result good">
+                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                    Result: ~50 Runtime Active risks
+                </div>
+            </div>
+        </div>
+
+        <!-- Architecture -->
+        <section class="section">
+            <div class="section-header">
+                <div class="section-icon">
+                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/>
+                    </svg>
+                </div>
+                <h2 class="section-title">Hybrid Architecture</h2>
+            </div>
+
+            <div class="arch-container">
+                <div class="arch-layers">
+                    <div class="arch-layer">
+                        <div class="arch-layer-title">
+                            Agentless Scanning
+                            <span class="arch-layer-badge breadth">Breadth</span>
+                        </div>
+                        <div class="arch-layer-desc">Connects to cloud APIs (AWS, Azure, GCP) to scan configurations. Instant visibility and 100% coverage. Minutes to deploy.</div>
+                        <div class="arch-layer-features">
+                            <span class="arch-feature">Cloud APIs</span>
+                            <span class="arch-feature">Config Scanning</span>
+                            <span class="arch-feature">Instant Deploy</span>
+                            <span class="arch-feature">100% Coverage</span>
+                        </div>
+                    </div>
+
+                    <div class="arch-arrow">→</div>
+
+                    <div class="arch-center">
+                        <div class="arch-center-title">Correlation Engine</div>
+                        <div class="arch-center-desc">Connects runtime signals to security findings. Mirrors how attackers actually move.</div>
+                        <div class="arch-center-badge">The Real IP</div>
+                    </div>
+
+                    <div class="arch-arrow">←</div>
+
+                    <div class="arch-layer">
+                        <div class="arch-layer-title">
+                            eBPF Runtime Sensors
+                            <span class="arch-layer-badge depth">Depth</span>
+                        </div>
+                        <div class="arch-layer-desc">Lightweight sensors inside the Linux kernel. Monitors actual workload behavior with &lt;1% CPU overhead.</div>
+                        <div class="arch-layer-features">
+                            <span class="arch-feature">System Calls</span>
+                            <span class="arch-feature">Network L3-L7</span>
+                            <span class="arch-feature">File Activity</span>
+                            <span class="arch-feature">Process Exec</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Platform Modules -->
+        <section class="section">
+            <div class="section-header">
+                <div class="section-icon" style="background: var(--accent-blue-dim); color: var(--accent-blue);">
+                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"/>
+                    </svg>
+                </div>
+                <h2 class="section-title">Platform Modules</h2>
+            </div>
+
+            <div class="modules-grid">
+                <div class="module-card core">
+                    <div class="module-abbr">CWPP</div>
+                    <div class="module-name">Cloud Workload Protection</div>
+                    <div class="module-status">Workload-level protection</div>
+                    <div class="module-badge core">Core Strength</div>
+                </div>
+
+                <div class="module-card core">
+                    <div class="module-abbr">CDR</div>
+                    <div class="module-name">Cloud Detection & Response</div>
+                    <div class="module-status">Real-time threat detection</div>
+                    <div class="module-badge core">Core Strength</div>
+                </div>
+
+                <div class="module-card">
+                    <div class="module-abbr">CSPM</div>
+                    <div class="module-name">Cloud Security Posture</div>
+                    <div class="module-status">Configuration scanning</div>
+                </div>
+
+                <div class="module-card">
+                    <div class="module-abbr">CIEM</div>
+                    <div class="module-name">Cloud Identity & Entitlement</div>
+                    <div class="module-status">Identity and access analysis</div>
+                </div>
+
+                <div class="module-card">
+                    <div class="module-abbr">K8s</div>
+                    <div class="module-name">Kubernetes Security</div>
+                    <div class="module-status">K8s-specific protection</div>
+                </div>
+
+                <div class="module-card">
+                    <div class="module-abbr">API</div>
+                    <div class="module-name">API Security</div>
+                    <div class="module-status">API discovery & protection</div>
+                    <div class="module-badge new">Added Apr 2025</div>
+                </div>
+
+                <div class="module-card">
+                    <div class="module-abbr">AI</div>
+                    <div class="module-name">AI Security</div>
+                    <div class="module-status">AI workload protection</div>
+                    <div class="module-badge new">NVIDIA Partnership</div>
+                </div>
+
+                <div class="module-card">
+                    <div class="module-abbr">DSPM</div>
+                    <div class="module-name">Data Security Posture</div>
+                    <div class="module-status">Data classification & protection</div>
+                    <div class="module-badge partial">Partial</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Defensibility -->
+        <section class="section">
+            <div class="section-header">
+                <div class="section-icon" style="background: var(--accent-cyan-dim); color: var(--accent-cyan);">
+                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+                    </svg>
+                </div>
+                <h2 class="section-title">Technology Defensibility</h2>
+            </div>
+
+            <div class="defense-grid">
+                <div class="defense-card">
+                    <div class="defense-header">
+                        <div class="defense-title">eBPF Runtime Engine</div>
+                        <span class="defense-level high">High</span>
+                    </div>
+                    <div class="defense-desc">Building production-grade eBPF instrumentation requires deep Linux kernel expertise, years of edge-case handling, and extensive production hardening. Can't be copy-pasted.</div>
+                    <div class="defense-lead">
+                        <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                        2-3 year architecture lead
+                    </div>
+                </div>
+
+                <div class="defense-card">
+                    <div class="defense-header">
+                        <div class="defense-title">Contextual Correlation Engine</div>
+                        <span class="defense-level high">High</span>
+                    </div>
+                    <div class="defense-desc">The data model connecting runtime signals to security findings embeds years of security domain expertise. Mirrors how attackers actually move through cloud environments.</div>
+                    <div class="defense-lead">
+                        <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                        Deep domain expertise embedded
+                    </div>
+                </div>
+
+                <div class="defense-card">
+                    <div class="defense-header">
+                        <div class="defense-title">AI/ML Behavioral Baselines</div>
+                        <span class="defense-level medium">Medium</span>
+                    </div>
+                    <div class="defense-desc">Every security vendor is building ML-based detection. This is table stakes, not differentiation. Upwind's advantage is the quality of runtime data, not the ML itself.</div>
+                    <div class="defense-lead" style="color: var(--accent-amber);">
+                        <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+                        </svg>
+                        Table stakes—all competitors building
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Customer Outcomes -->
+        <section class="section">
+            <div class="section-header">
+                <div class="section-icon">
+                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+                    </svg>
+                </div>
+                <h2 class="section-title">Validated Customer Outcomes</h2>
+            </div>
+
+            <div class="outcomes-grid">
+                <div class="outcome-card">
+                    <div class="outcome-customer">Petrofac</div>
+                    <div class="outcome-metric">98%</div>
+                    <div class="outcome-label">Alert reduction (2,000 → 30)</div>
+                    <div class="outcome-proof">Core value proposition works at enterprise scale</div>
+                </div>
+
+                <div class="outcome-card">
+                    <div class="outcome-customer">EX.CO</div>
+                    <div class="outcome-metric">98%</div>
+                    <div class="outcome-label">Alert reduction</div>
+                    <div class="outcome-proof">Repeatable across different environments</div>
+                </div>
+
+                <div class="outcome-card">
+                    <div class="outcome-customer">Yotpo</div>
+                    <div class="outcome-metric">4x</div>
+                    <div class="outcome-label">Faster remediation</div>
+                    <div class="outcome-proof">Time-to-fix improvement, not just alert reduction</div>
+                </div>
+
+                <div class="outcome-card">
+                    <div class="outcome-customer">H2O.ai</div>
+                    <div class="outcome-metric">&lt;3%</div>
+                    <div class="outcome-label">Memory usage under heavy AI load</div>
+                    <div class="outcome-proof">Lightweight claim validated in production</div>
+                </div>
+
+                <div class="outcome-card">
+                    <div class="outcome-customer">The RealReal</div>
+                    <div class="outcome-metric">30 min</div>
+                    <div class="outcome-label">Full rollout by junior engineer</div>
+                    <div class="outcome-proof">Ease of deployment is real, not marketing</div>
+                </div>
+
+                <div class="outcome-card">
+                    <div class="outcome-customer">Ada</div>
+                    <div class="outcome-metric">33%</div>
+                    <div class="outcome-label">Cost savings replacing 3 tools</div>
+                    <div class="outcome-proof">Consolidation economics work</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Gartner Ratings -->
+        <div class="ratings-card">
+            <div class="ratings-header">
+                <div class="ratings-title">Gartner Peer Insights Comparison</div>
+                <div class="ratings-badge">Upwind Leads Category</div>
+            </div>
+
+            <div class="ratings-grid">
+                <div class="rating-card">
+                    <div class="rating-company">Upwind</div>
+                    <div class="rating-score leader">4.9/5</div>
+                    <div class="rating-reviews">31 reviews</div>
+                    <div class="rating-star highlight">★★★★★ 84% five-star</div>
+                </div>
+
+                <div class="rating-card">
+                    <div class="rating-company">Wiz</div>
+                    <div class="rating-score good">4.7/5</div>
+                    <div class="rating-reviews">261 reviews</div>
+                    <div class="rating-star">★★★★☆ 69% five-star</div>
+                </div>
+
+                <div class="rating-card">
+                    <div class="rating-company">Orca</div>
+                    <div class="rating-score avg">4.6/5</div>
+                    <div class="rating-reviews">211 reviews</div>
+                    <div class="rating-star">★★★★☆ 66% five-star</div>
+                </div>
+
+                <div class="rating-card">
+                    <div class="rating-company">Prisma Cloud</div>
+                    <div class="rating-score avg">4.5/5</div>
+                    <div class="rating-reviews">245 reviews</div>
+                    <div class="rating-star">★★★☆☆ 55% five-star</div>
+                </div>
+            </div>
+
+            <div style="margin-top: 1rem; font-size: 13px; color: var(--text-secondary);">
+                <strong>97% recommend rate.</strong> Customers who buy Upwind are happier than customers who buy competitors. This is product-market fit showing up in data.
+            </div>
+        </div>
+
+        <!-- Named Customers -->
+        <section class="section">
+            <div class="section-header">
+                <div class="section-icon" style="background: var(--accent-violet-dim); color: var(--accent-violet);">
+                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
+                    </svg>
+                </div>
+                <h2 class="section-title">Named Customers</h2>
+            </div>
+
+            <div class="logos-container">
+                <div class="logos-section">
+                    <div class="logos-label">Public Companies</div>
+                    <div class="logos-grid">
+                        <span class="logo-badge public">Peloton (PTON)</span>
+                        <span class="logo-badge public">Bill.com (BILL)</span>
+                        <span class="logo-badge public">Fiverr (FVRR)</span>
+                        <span class="logo-badge public">Wix (WIX)</span>
+                        <span class="logo-badge public">The RealReal (REAL)</span>
+                        <span class="logo-badge public">CAVA (CAVA)</span>
+                    </div>
+                </div>
+
+                <div class="logos-section">
+                    <div class="logos-label">Notable Enterprises</div>
+                    <div class="logos-grid">
+                        <span class="logo-badge">Agoda (Booking.com)</span>
+                        <span class="logo-badge">Petrofac (FTSE 250)</span>
+                        <span class="logo-badge">H2O.ai (Series H)</span>
+                        <span class="logo-badge">Ping Identity</span>
+                    </div>
+                </div>
+
+                <div style="margin-top: 1rem; font-size: 13px; color: var(--text-secondary);">
+                    <strong>Enterprise readiness validated.</strong> These aren't early-adopter startups—they're established companies with real security requirements.
+                </div>
+            </div>
+        </section>
+
+        <!-- Certifications -->
+        <section class="section">
+            <div class="section-header">
+                <div class="section-icon" style="background: var(--accent-amber-dim); color: var(--accent-amber);">
+                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/>
+                    </svg>
+                </div>
+                <h2 class="section-title">Certifications & Compliance</h2>
+            </div>
+
+            <div class="certs-grid">
+                <div class="cert-card">
+                    <div class="cert-icon achieved">✓</div>
+                    <div class="cert-name">SOC 2 Type II</div>
+                    <div class="cert-status">Achieved</div>
+                    <div class="cert-impact">Standard enterprise requirement</div>
+                </div>
+
+                <div class="cert-card">
+                    <div class="cert-icon achieved">✓</div>
+                    <div class="cert-name">GDPR</div>
+                    <div class="cert-status">Compliant</div>
+                    <div class="cert-impact">EU customers supported</div>
+                </div>
+
+                <div class="cert-card">
+                    <div class="cert-icon missing">✗</div>
+                    <div class="cert-name">ISO 27001</div>
+                    <div class="cert-status">Not Achieved</div>
+                    <div class="cert-impact concern">15-20% of RFPs blocked</div>
+                </div>
+
+                <div class="cert-card">
+                    <div class="cert-icon progress">⏳</div>
+                    <div class="cert-name">FedRAMP Moderate</div>
+                    <div class="cert-status">In Progress</div>
+                    <div class="cert-impact">Target Q2-Q3 2026</div>
+                </div>
+
+                <div class="cert-card">
+                    <div class="cert-icon missing">✗</div>
+                    <div class="cert-name">HIPAA</div>
+                    <div class="cert-status">Not Claimed</div>
+                    <div class="cert-impact">Healthcare market limited</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Technology Gaps -->
+        <section class="section">
+            <div class="section-header">
+                <div class="section-icon" style="background: var(--accent-red-dim); color: var(--accent-red);">
+                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+                    </svg>
+                </div>
+                <h2 class="section-title">Technology Gaps to Acknowledge</h2>
+            </div>
+
+            <div class="gaps-grid">
+                <div class="gap-card">
+                    <div class="gap-title">Windows Runtime</div>
+                    <div class="gap-desc">eBPF is Linux-only. Windows coverage is agentless-only, meaning no runtime visibility for Windows workloads. Less critical in cloud-native (predominantly Linux).</div>
+                    <div class="gap-timeline">Roadmap: Q4 2026</div>
+                </div>
+
+                <div class="gap-card">
+                    <div class="gap-title">Serverless</div>
+                    <div class="gap-desc">AWS Lambda and similar serverless platforms are challenging for runtime monitoring. Serverless Tracer deploying as of Dec 2025—newer capability.</div>
+                    <div class="gap-timeline">Status: Active deployment</div>
+                </div>
+
+                <div class="gap-card">
+                    <div class="gap-title">Legacy Kernels</div>
+                    <div class="gap-desc">Older RHEL or CentOS versions may not support eBPF. Could exclude certain legacy banking or manufacturing environments running outdated OS.</div>
+                    <div class="gap-timeline">Limitation: Architectural</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer Navigation -->
+        <div class="footer-nav">
+            <a href="page2-company.html" class="footer-link">
+                <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+                </svg>
+                Company Profile
+            </a>
+            <div class="footer-meta">
+                <div>Salesforce Ventures • December 2025</div>
+                <div>Internal Use Only</div>
+            </div>
+            <a href="page4-market.html" class="footer-link next">
+                Market & Competition
+                <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                </svg>
+            </a>
+        </div>
+    </main>
+</body>
+</html>
