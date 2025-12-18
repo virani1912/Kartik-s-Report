@@ -1,0 +1,1101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upwind Security | Investment Due Diligence Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0a0f1a;
+            --bg-secondary: #111827;
+            --bg-card: #1a2234;
+            --bg-elevated: #212b42;
+            --text-primary: #f1f5f9;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+            --border-subtle: rgba(148, 163, 184, 0.12);
+            --border-medium: rgba(148, 163, 184, 0.2);
+            
+            --accent-blue: #3b82f6;
+            --accent-blue-light: #60a5fa;
+            --accent-blue-dim: rgba(59, 130, 246, 0.15);
+            
+            --accent-violet: #8b5cf6;
+            --accent-violet-light: #a78bfa;
+            --accent-violet-dim: rgba(139, 92, 246, 0.15);
+            
+            --accent-emerald: #10b981;
+            --accent-emerald-light: #34d399;
+            --accent-emerald-dim: rgba(16, 185, 129, 0.15);
+            
+            --accent-cyan: #06b6d4;
+            --accent-cyan-light: #22d3ee;
+            --accent-cyan-dim: rgba(6, 182, 212, 0.15);
+            
+            --accent-amber: #f59e0b;
+            --accent-amber-light: #fbbf24;
+            --accent-amber-dim: rgba(245, 158, 11, 0.15);
+            
+            --accent-red: #ef4444;
+            --accent-red-light: #f87171;
+            --accent-red-dim: rgba(239, 68, 68, 0.15);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(10, 15, 26, 0.9);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-subtle);
+            padding: 0 2rem;
+        }
+
+        .nav-inner {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 64px;
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .nav-logo {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--accent-blue) 0%, var(--accent-violet) 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Sora', sans-serif;
+            font-weight: 700;
+            font-size: 18px;
+            color: white;
+        }
+
+        .nav-title {
+            font-family: 'Sora', sans-serif;
+            font-weight: 600;
+            font-size: 16px;
+            color: var(--text-primary);
+        }
+
+        .nav-subtitle {
+            font-size: 11px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 4px;
+        }
+
+        .nav-link {
+            padding: 8px 14px;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--text-primary);
+            background: var(--bg-elevated);
+        }
+
+        .nav-link.active {
+            color: var(--accent-blue-light);
+            background: var(--accent-blue-dim);
+        }
+
+        .nav-status {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 14px;
+            background: var(--accent-amber-dim);
+            border: 1px solid rgba(245, 158, 11, 0.3);
+            border-radius: 8px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--accent-amber-light);
+        }
+
+        .nav-status-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--accent-amber);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        /* Main Content */
+        .main {
+            padding: 100px 2rem 4rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(139, 92, 246, 0.1) 50%, rgba(16, 185, 129, 0.05) 100%);
+            border: 1px solid var(--border-medium);
+            border-radius: 24px;
+            padding: 3rem;
+            margin-bottom: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.1) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--accent-amber-dim);
+            color: var(--accent-amber-light);
+            padding: 8px 16px;
+            border-radius: 100px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-title {
+            font-family: 'Sora', sans-serif;
+            font-size: 2.75rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent-blue-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            max-width: 600px;
+        }
+
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 1.5rem;
+        }
+
+        .hero-stat {
+            text-align: center;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border-subtle);
+            border-radius: 12px;
+        }
+
+        .hero-stat-value {
+            font-family: 'Sora', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent-blue-light);
+            margin-bottom: 0.25rem;
+        }
+
+        .hero-stat-label {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        /* Quick Actions */
+        .quick-actions {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .quick-action {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 20px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 12px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 14px;
+            transition: all 0.2s ease;
+        }
+
+        .quick-action:hover {
+            border-color: var(--accent-blue);
+            color: var(--text-primary);
+            transform: translateY(-2px);
+        }
+
+        .quick-action-icon {
+            width: 20px;
+            height: 20px;
+        }
+
+        .quick-action.primary {
+            background: var(--accent-blue-dim);
+            border-color: var(--accent-blue);
+            color: var(--accent-blue-light);
+        }
+
+        .quick-action.primary:hover {
+            background: rgba(59, 130, 246, 0.25);
+        }
+
+        /* Section Title */
+        .section-title {
+            font-family: 'Sora', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title-icon {
+            width: 24px;
+            height: 24px;
+            color: var(--accent-blue);
+        }
+
+        /* Page Cards Grid */
+        .pages-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .page-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .page-card:hover {
+            border-color: var(--border-medium);
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .page-card-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid var(--border-subtle);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .page-card-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .page-card-number {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Sora', sans-serif;
+            font-weight: 700;
+            font-size: 16px;
+        }
+
+        .page-card.verdict .page-card-number { background: var(--accent-blue-dim); color: var(--accent-blue); }
+        .page-card.company .page-card-number { background: var(--accent-violet-dim); color: var(--accent-violet); }
+        .page-card.product .page-card-number { background: var(--accent-emerald-dim); color: var(--accent-emerald); }
+        .page-card.market .page-card-number { background: var(--accent-cyan-dim); color: var(--accent-cyan); }
+        .page-card.financials .page-card-number { background: var(--accent-amber-dim); color: var(--accent-amber); }
+        .page-card.risk .page-card-number { background: var(--accent-red-dim); color: var(--accent-red); }
+
+        .page-card-title {
+            font-family: 'Sora', sans-serif;
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        .page-card-subtitle {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .page-card-link {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            background: var(--bg-elevated);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .page-card-link:hover {
+            background: var(--accent-blue-dim);
+            color: var(--accent-blue);
+        }
+
+        .page-card-sections {
+            padding: 1rem 1.5rem 1.5rem;
+        }
+
+        .section-links {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .section-link {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 12px;
+            border-radius: 8px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 13px;
+            transition: all 0.15s ease;
+        }
+
+        .section-link:hover {
+            background: var(--bg-elevated);
+            color: var(--text-primary);
+        }
+
+        .section-link-icon {
+            width: 16px;
+            height: 16px;
+            opacity: 0.6;
+        }
+
+        .section-link-badge {
+            margin-left: auto;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10px;
+            font-weight: 600;
+            padding: 2px 8px;
+            border-radius: 4px;
+            text-transform: uppercase;
+        }
+
+        .section-link-badge.key {
+            background: var(--accent-emerald-dim);
+            color: var(--accent-emerald);
+        }
+
+        .section-link-badge.critical {
+            background: var(--accent-red-dim);
+            color: var(--accent-red);
+        }
+
+        .section-link-badge.data {
+            background: var(--accent-amber-dim);
+            color: var(--accent-amber);
+        }
+
+        /* Key Metrics Section */
+        .metrics-section {
+            margin-bottom: 3rem;
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+        }
+
+        .metric-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 16px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.2s ease;
+        }
+
+        .metric-card:hover {
+            border-color: var(--border-medium);
+        }
+
+        .metric-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+        }
+
+        .metric-card.verdict .metric-icon { background: var(--accent-blue-dim); color: var(--accent-blue); }
+        .metric-card.return .metric-icon { background: var(--accent-emerald-dim); color: var(--accent-emerald); }
+        .metric-card.confidence .metric-icon { background: var(--accent-violet-dim); color: var(--accent-violet); }
+        .metric-card.timeline .metric-icon { background: var(--accent-amber-dim); color: var(--accent-amber); }
+
+        .metric-value {
+            font-family: 'Sora', sans-serif;
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+
+        .metric-card.verdict .metric-value { color: var(--accent-blue-light); }
+        .metric-card.return .metric-value { color: var(--accent-emerald-light); }
+        .metric-card.confidence .metric-value { color: var(--accent-violet-light); }
+        .metric-card.timeline .metric-value { color: var(--accent-amber-light); }
+
+        .metric-label {
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        /* Footer */
+        .footer {
+            border-top: 1px solid var(--border-subtle);
+            padding-top: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-info {
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .footer-link {
+            font-size: 13px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .footer-link:hover {
+            color: var(--text-primary);
+        }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .pages-grid { grid-template-columns: repeat(2, 1fr); }
+            .hero-stats { grid-template-columns: repeat(3, 1fr); }
+            .metrics-grid { grid-template-columns: repeat(2, 1fr); }
+            .nav-links { display: none; }
+        }
+
+        @media (max-width: 768px) {
+            .nav-status { display: none; }
+            .main { padding: 80px 1rem 2rem; }
+            .hero { padding: 2rem; }
+            .hero-title { font-size: 2rem; }
+            .hero-stats { grid-template-columns: repeat(2, 1fr); }
+            .pages-grid { grid-template-columns: 1fr; }
+            .metrics-grid { grid-template-columns: 1fr; }
+            .quick-actions { flex-direction: column; }
+            .footer { flex-direction: column; gap: 1rem; text-align: center; }
+        }
+
+        @media (max-width: 480px) {
+            .hero-stats { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <div class="nav-inner">
+            <div class="nav-brand">
+                <div class="nav-logo">U</div>
+                <div>
+                    <div class="nav-title">Upwind Security</div>
+                    <div class="nav-subtitle">Investment Due Diligence</div>
+                </div>
+            </div>
+            <div class="nav-actions">
+                <div class="nav-links">
+                    <a href="index.html" class="nav-link active">Dashboard</a>
+                    <a href="page1-verdict.html" class="nav-link">Verdict</a>
+                    <a href="page2-company.html" class="nav-link">Company</a>
+                    <a href="page3-product.html" class="nav-link">Product</a>
+                    <a href="page4-market.html" class="nav-link">Market</a>
+                    <a href="page5-financials.html" class="nav-link">Financials</a>
+                    <a href="page6-risk.html" class="nav-link">Risk & Action</a>
+                </div>
+                <div class="nav-status">
+                    <span class="nav-status-dot"></span>
+                    Conditional Proceed
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="main">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-badge">
+                <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+                </svg>
+                Salesforce Ventures • December 2025
+            </div>
+            <h1 class="hero-title">Upwind Security Due Diligence</h1>
+            <p class="hero-subtitle">Comprehensive investment analysis for cloud-native application protection platform. Runtime-first architecture with 2-3 year technology lead.</p>
+            
+            <div class="hero-stats">
+                <div class="hero-stat">
+                    <div class="hero-stat-value">$900M</div>
+                    <div class="hero-stat-label">Valuation</div>
+                </div>
+                <div class="hero-stat">
+                    <div class="hero-stat-value">$50-75M</div>
+                    <div class="hero-stat-label">Investment Size</div>
+                </div>
+                <div class="hero-stat">
+                    <div class="hero-stat-value">8-12%</div>
+                    <div class="hero-stat-label">Target Ownership</div>
+                </div>
+                <div class="hero-stat">
+                    <div class="hero-stat-value">8.3x</div>
+                    <div class="hero-stat-label">Expected Return</div>
+                </div>
+                <div class="hero-stat">
+                    <div class="hero-stat-value">75-78%</div>
+                    <div class="hero-stat-label">Confidence</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Actions -->
+        <div class="quick-actions">
+            <a href="page1-verdict.html" class="quick-action primary">
+                <svg class="quick-action-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+                View Executive Verdict
+            </a>
+            <a href="page6-risk.html#action-plan" class="quick-action">
+                <svg class="quick-action-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+                Week 1 Action Plan
+            </a>
+            <a href="page5-financials.html#exit-scenarios" class="quick-action">
+                <svg class="quick-action-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
+                </svg>
+                Exit Scenarios
+            </a>
+            <a href="page4-market.html#competitive-matrix" class="quick-action">
+                <svg class="quick-action-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16"/>
+                </svg>
+                Competitive Matrix
+            </a>
+        </div>
+
+        <!-- Key Metrics -->
+        <section class="metrics-section">
+            <h2 class="section-title">
+                <svg class="section-title-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+                </svg>
+                Key Decision Metrics
+            </h2>
+            <div class="metrics-grid">
+                <div class="metric-card verdict">
+                    <div class="metric-icon">
+                        <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                    </div>
+                    <div class="metric-value">Conditional</div>
+                    <div class="metric-label">Investment Verdict</div>
+                </div>
+                <div class="metric-card return">
+                    <div class="metric-icon">
+                        <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
+                        </svg>
+                    </div>
+                    <div class="metric-value">8.3x</div>
+                    <div class="metric-label">Expected Return</div>
+                </div>
+                <div class="metric-card confidence">
+                    <div class="metric-icon">
+                        <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+                        </svg>
+                    </div>
+                    <div class="metric-value">75-78%</div>
+                    <div class="metric-label">Confidence Level</div>
+                </div>
+                <div class="metric-card timeline">
+                    <div class="metric-icon">
+                        <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                    </div>
+                    <div class="metric-value">7 Days</div>
+                    <div class="metric-label">Path Determination</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Page Navigation -->
+        <section>
+            <h2 class="section-title">
+                <svg class="section-title-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                </svg>
+                Report Sections
+            </h2>
+            
+            <div class="pages-grid">
+                <!-- Page 1: Verdict -->
+                <div class="page-card verdict">
+                    <div class="page-card-header">
+                        <div class="page-card-info">
+                            <div class="page-card-number">01</div>
+                            <div>
+                                <div class="page-card-title">Executive Verdict</div>
+                                <div class="page-card-subtitle">Investment recommendation</div>
+                            </div>
+                        </div>
+                        <a href="page1-verdict.html" class="page-card-link">
+                            <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+                            </svg>
+                        </a>
+                    </div>
+                    <div class="page-card-sections">
+                        <div class="section-links">
+                            <a href="page1-verdict.html#verdict" class="section-link">
+                                <svg class="section-link-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                </svg>
+                                Investment Verdict
+                                <span class="section-link-badge key">Key</span>
+                            </a>
+                            <a href="page1-verdict.html#paths" class="section-link">
+                                <svg class="section-link-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
+                                </svg>
+                                Three Paths Forward
+                            </a>
+                            <a href="page1-verdict.html#reasons" class="section-link">
+                                <svg class="section-link-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                </svg>
+                                Reasons to Invest
+                            </a>
+                            <a href="page1-verdict.html#returns" class="section-link">
+                                <svg class="section-link-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                </svg>
+                                Expected Returns
+                                <span class="section-link-badge data">Data</span>
+                            </a>
+                            <a href="page1-verdict.html#deal-killers" class="section-link">
+                                <svg class="section-link-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+                                </svg>
+                                Deal Killers
+                                <span class="section-link-badge critical">Critical</span>
+                            </a>
+                            <a href="page1-verdict.html#actions" class="section-link">
+                                <svg class="section-link-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                </svg>
+                                Monday Actions
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Page 2: Company -->
+                <div class="page-card company">
+                    <div class="page-card-header">
+                        <div class="page-card-info">
+                            <div class="page-card-number">02</div>
+                            <div>
+                                <div class="page-card-title">Company Profile</div>
+                                <div class="page-card-subtitle">Team, funding & history</div>
+                            </div>
+                        </div>
+                        <a href="page2-company.html" class="page-card-link">
+                            <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+                            </svg>
+                        </a>
+                    </div>
+                    <div class="page-card-sections">
+                        <div class="section-links">
+                            <a href="page2-company.html#corporate" class="section-link">
+                                <svg class="section-link-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
+                                </svg>
+                                Corporate Facts
+                            </a>
+                            <a href="page2-company.html#founders" class="section-link">
+                                <svg class="section-link-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+                                </svg>
+                                Founding Team
+                                <span class="section-link-badge key">Key</span>
+                            </a>
+                            <a href="page2-company.html#signal" class="section-link">
+                                <svg class="section-link-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/>
+                                </svg>
+                                Strongest Signal
+                            </a>
+                            <a href="page2-company.html#executives" class="section-link">
+                                <svg class="section-link-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+                                </svg>
+                                Key Executives
+                            </a>
+                            <a href="page2-company.html#board" class="section-link">
+                                <svg class="section-link-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/>
+                                </svg>
+                                The Board
+                            </a>
+                            <a href="page2-company.html#funding" class="section-link">
+                                <svg class="section-link-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                </svg>
+                                Funding History
+                                <span class="section-link-badge data">Data</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Page 3: Product -->
+                <div class="page-card product">
+                    <div class="page-card-header">
+                        <div class="page-card-info">
+                            <div class="page-card-number">03</div>
+                            <div>
+                                <div class="page-card-title">Product & Technology</div>
+                                <div class="page-card-subtitle">Architecture & capabilities</div>
+                            </div>
+                        </div>
+                        <a href="page3-product.html" class="page-card-link">
+                            <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+                            </svg>
+                        </a>
+                    </div>
+                    <div class="page-card-sections">
+                        <div class="section-links">
+                            <a href="page3-product.html#insight" class="section-link">
+                                <svg class="section-link-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+                                </svg>
+                                Key Insight
+                                <span class="section-link-badge key">Key</span>
+                            </a>
+                            <a href="page3-product.html#architecture" class="section-link">
+                                <svg class="section-link-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/>
+                                </svg>
+                                Hybrid Architecture
+                            </a>
+                            <a href="page3-product.html#modules" class="section-link">
+                                <svg class="section-link-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"/>
+                                </svg>
+                                Platform Modules
+                            </a>
+                            <a href="page3-product.html#defensibility" class="section-link">
+                                <svg class="section-link-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+                                </svg>
+                                Technology Defensibility
+                            </a>
+                            <a href="page3-product.html#outcomes" class="section-link">
+                                <svg class="section-link-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+                                </svg>
+                                Customer Outcomes
+                                <span class="section-link-badge data">Data</span>
+                            </a>
+                            <a href="page3-product.html#gaps" class="section-link">
+                                <svg class="section-link-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+                                </svg>
+                                Technology Gaps
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Page 4: Market -->
+                <div class="page-card market">
+                    <div class="page-card-header">
+                        <div class="page-card-info">
+                            <div class="page-card-number">04</div>
+                            <div>
+                                <div class="page-card-title">Market & Competition</div>
+                                <div class="page-card-subtitle">Market sizing & positioning</div>
+                            </div>
+                        </div>
+                        <a href="page4-market.html" class="page-card-link">
+                            <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+                            </svg>
+                        </a>
+                    </div>
+                    <div class="page-card-sections">
+                        <div class="section-links">
+                            <a href="page4-market.html#market-size" class="section-link">
+                                <svg class="section-link-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
+                                </svg>
+                                Market Size ($5-6B)
+                                <span class="section-link-badge data">Data</span>
+                            </a>
+                            <a href="page4-market.html#tam" class="section-link">
+                                <svg class="section-link-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z"/>
+                                </svg>
+                                TAM Expansion
+                            </a>
+                            <a href="page4-market.html#why-now" class="section-link">
+                                <svg class="section-link-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                </svg>
+                                Why Now (7 Factors)
+                                <span class="section-link-badge key">Key</span>
+                            </a>
+                            <a href="page4-market.html#share" class="section-link">
+                                <svg class="section-link-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+                                </svg>
+                                Market Share
+                            </a>
+                            <a href="page4-market.html#competitive-matrix" class="section-link">
+                                <svg class="section-link-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16"/>
+                                </svg>
+                                Competitive Matrix
+                            </a>
+                            <a href="page4-market.html#wiz-google" class="section-link">
+                                <svg class="section-link-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                                </svg>
+                                Wiz-Google Impact
+                                <span class="section-link-badge critical">Critical</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Page 5: Financials -->
+                <div class="page-card financials">
+                    <div class="page-card-header">
+                        <div class="page-card-info">
+                            <div class="page-card-number">05</div>
+                            <div>
+                                <div class="page-card-title">Financials & Exit</div>
+                                <div class="page-card-subtitle">Valuation & scenarios</div>
+                            </div>
+                        </div>
+                        <a href="page5-financials.html" class="page-card-link">
+                            <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+                            </svg>
+                        </a>
+                    </div>
+                    <div class="page-card-sections">
+                        <div class="section-links">
+                            <a href="page5-financials.html#summary" class="section-link">
+                                <svg class="section-link-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                </svg>
+                                Financial Summary
+                                <span class="section-link-badge data">Data</span>
+                            </a>
+                            <a href="page5-financials.html#arr" class="section-link">
+                                <svg class="section-link-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/>
+                                </svg>
+                                ARR Estimation
+                            </a>
+                            <a href="page5-financials.html#valuation" class="section-link">
+                                <svg class="section-link-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3"/>
+                                </svg>
+                                Valuation Comparison
+                            </a>
+                            <a href="page5-financials.html#exit-scenarios" class="section-link">
+                                <svg class="section-link-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
+                                </svg>
+                                Exit Scenarios
+                                <span class="section-link-badge key">Key</span>
+                            </a>
+                            <a href="page5-financials.html#acquirers" class="section-link">
+                                <svg class="section-link-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
+                                </svg>
+                                Strategic Acquirers
+                            </a>
+                            <a href="page5-financials.html#datadog" class="section-link">
+                                <svg class="section-link-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+                                </svg>
+                                Datadog Scenario
+                                <span class="section-link-badge critical">Critical</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Page 6: Risk & Action -->
+                <div class="page-card risk">
+                    <div class="page-card-header">
+                        <div class="page-card-info">
+                            <div class="page-card-number">06</div>
+                            <div>
+                                <div class="page-card-title">Risk & Action Plan</div>
+                                <div class="page-card-subtitle">Risks & next steps</div>
+                            </div>
+                        </div>
+                        <a href="page6-risk.html" class="page-card-link">
+                            <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+                            </svg>
+                        </a>
+                    </div>
+                    <div class="page-card-sections">
+                        <div class="section-links">
+                            <a href="page6-risk.html#summary" class="section-link">
+                                <svg class="section-link-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+                                </svg>
+                                Risk Summary
+                            </a>
+                            <a href="page6-risk.html#high-risks" class="section-link">
+                                <svg class="section-link-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+                                </svg>
+                                High-Impact Risks
+                                <span class="section-link-badge critical">Critical</span>
+                            </a>
+                            <a href="page6-risk.html#deal-breakers" class="section-link">
+                                <svg class="section-link-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                </svg>
+                                Deal-Breaker Questions
+                            </a>
+                            <a href="page6-risk.html#action-plan" class="section-link">
+                                <svg class="section-link-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                </svg>
+                                Week 1 Timeline
+                                <span class="section-link-badge key">Key</span>
+                            </a>
+                            <a href="page6-risk.html#30-60-90" class="section-link">
+                                <svg class="section-link-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"/>
+                                </svg>
+                                30-60-90 Day Plan
+                            </a>
+                            <a href="page6-risk.html#verdict" class="section-link">
+                                <svg class="section-link-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                </svg>
+                                Final Verdict
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-info">
+                Prepared for Salesforce Ventures • December 2025
+            </div>
+            <div class="footer-links">
+                <a href="page1-verdict.html" class="footer-link">Start Reading →</a>
+            </div>
+        </footer>
+    </main>
+</body>
+</html>
